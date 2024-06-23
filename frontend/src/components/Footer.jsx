@@ -1,6 +1,6 @@
 const Footer = () =>{
     return (
-        <div className="flex justify-center h-fit w-full bg-blue-900 bottom-0">
+        <div className="flex justify-center text-[0.9rem] h-fit w-full bg-blue-900 bottom-0">
             <div className="w-full p-5 grid content-center grid-cols-2 sm:w-fit sm:grid-cols-3 text-white">
                 <div>
                     <h1>Contact</h1>
