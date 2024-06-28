@@ -28,7 +28,7 @@ function Header(){
             style={{
                     height: `${headerHeight}px`,
             }}
-            className="fixed top-0 w-full"
+            className="fixed top-0 w-full z-50"
         >
             <div  
                 className="h-full flex justify-center items-center bg-blue-500 p-2"
