@@ -10,7 +10,7 @@ const Home = ()=>{
         <>
             <MainContentWrappper>
                 <Slideshow />
-                <div className="grid grid-cols-1 md:grid-cols-4">
+                <div className="grid grid-cols-1 lg:grid-cols-4">
                     {/* Left Section */}
                     <div>
                         <CardWrapper>

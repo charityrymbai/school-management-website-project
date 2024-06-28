@@ -4,7 +4,7 @@ const CardWrapper = (props)=>{
             style={{
                 height: `${props.height}px`
             }}
-            className="grid justify-items-center p-5 m-4 rounded-lg shadow-xl bg-gray-100"    
+            className="grid justify-items-center p-5 m-4 rounded-lg shadow-md bg-gray-100"    
         >
             {props.children}
         </div>
