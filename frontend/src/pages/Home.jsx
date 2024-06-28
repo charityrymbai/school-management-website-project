@@ -20,7 +20,7 @@ const Home = ()=>{
                     {/* MainSection */}
                     <div className="text-poppins col-span-3">
                         <CardWrapper>
-                        <div className="p-10">
+                        <div className="sm:p-10">
                             <h1 className={h1Style}>Welcome to Some Random Higher Secondary School, RandomPlace!</h1>
                             <p className={pStyle}>
                             We are delighted to welcome you to the official website of Some Random Higher Secondary School, located in the vibrant community of RandomPlace. Our institution is committed to providing an enriching educational experience that prepares students for a successful future.<br/>
