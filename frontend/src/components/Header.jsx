@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import NavBar from "./NavBar";
 
 function Header(){
     const [scrollY, setScrollY] = useState(0);
@@ -54,14 +55,7 @@ function Header(){
                     </div>
                 </div> 
             </div>
-            <nav className="flex justify-around h-12 bg-yellow-500">
-                <ul className="w-full md:w-[50%] flex justify-around py-3">
-                    <button>Home</button>
-                    <button>About</button>
-                    <button>Login</button>
-                    <button>Contact</button>
-                </ul>
-            </nav>
+            <NavBar />
         </div>
     )
 }

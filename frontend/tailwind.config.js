@@ -6,6 +6,12 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        'inter': ["Inter","sans-serif"],
+        'poppins': ["Poppins","sans-serif"],
+        'montserrat': ["Montserrat","sans-serif"],
+        'open_sans': ["Open Sans","sans-serif"],
+      },
       colors:{
         
       }
