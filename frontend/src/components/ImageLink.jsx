@@ -1,17 +1,9 @@
 import CardWrapper from "../Wrappers/CardWrapper"
 
-import {useNavigate} from 'react-router-dom'
-
-const ImageLink = ({children, imageSrc, gotopage})=>{
-
-    const navigate = useNavigate()
+const ImageLink = ({children, imageSrc})=>{
 
     return (
-        <div 
-            onClick={()=>{
-                navigate(gotopage)
-            }}
-            className="hover:cursor-pointer text-poppins text-2xl">
+        <div className="hover:cursor-pointer text-poppins text-2xl">
             <CardWrapper>
                 <img 
                     className="h-[200px]"

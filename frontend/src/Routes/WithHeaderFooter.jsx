@@ -6,8 +6,7 @@ import Home from "./../pages/Home"
 import About from './../pages/About'
 import Login from './../pages/Login'
 import Contact from './../pages/Contact'
-import TeacherLogin from './../pages/TeacherLogin'
-import StudentLogin from './../pages/StudentLogin'
+import LoginPortal from '../pages/LoginPortal'
 
 const WithHeaderFooter = () => {
     return <div className='bg-blue-100'>
@@ -17,8 +16,7 @@ const WithHeaderFooter = () => {
             <Route path="About" element={<About />} />
             <Route path="Login" element={<Login />} />
             <Route path="Contact" element={<Contact />} />
-            <Route path="Login/teacher" element={<TeacherLogin />} />
-            <Route path="Login/student" element={<StudentLogin />} />
+            <Route path="login/:user" element={<LoginPortal />} />
         </Routes>
         <Footer />
         </div>

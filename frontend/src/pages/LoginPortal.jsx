@@ -1,16 +1,20 @@
+import { useParams } from "react-router-dom"
+
+import MainContentWrappper from "../Wrappers/MainContentWrapper";
+import CardWrapper from "../Wrappers/CardWrapper";
 import Heading1 from "../components/Heading1"
 import SignInOutButton from "../components/SignInOutButton"
 import TextLink from "../components/TextLink"
-import CardWrapper from "../Wrappers/CardWrapper"
-import MainContentWrappper from "../Wrappers/MainContentWrapper"
 
-const student = ()=>{
-    return(
+const LoginPortal = () =>{
+    const params = useParams();
+
+    return <>
         <MainContentWrappper>
             <div className="flex justify-center">
                 <CardWrapper width={300}>
                     <div className="grid grid-cols-1 w-[200px]">
-                        <Heading1>Welcome Students!!</Heading1>
+                        <Heading1>Welcome {params.user}s!!</Heading1>
                         <input 
                             className="p-2 h-10 border-2 border-gray-400 rounded-md my-5" 
                             placeholder="Roll Number"
@@ -27,7 +31,7 @@ const student = ()=>{
                 </CardWrapper>
             </div>
         </MainContentWrappper>
-    )
+    </>
 }
 
-export default student
+export default LoginPortal
