@@ -10,18 +10,18 @@ import TeacherLogin from './../pages/TeacherLogin'
 import StudentLogin from './../pages/StudentLogin'
 
 const WithHeaderFooter = () => {
-    return <>
+    return <div className='bg-blue-100'>
         <Header />
         <Routes>
             <Route path="" element={<Home />} />
             <Route path="About" element={<About />} />
             <Route path="Login" element={<Login />} />
             <Route path="Contact" element={<Contact />} />
-            <Route path="Login/teacherLogin" element={<TeacherLogin />} />
-            <Route path="Login/studentLogin" element={<StudentLogin />} />
+            <Route path="Login/teacher" element={<TeacherLogin />} />
+            <Route path="Login/student" element={<StudentLogin />} />
         </Routes>
         <Footer />
-        </>
+        </div>
 }
 
 export default WithHeaderFooter

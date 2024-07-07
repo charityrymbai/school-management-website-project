@@ -18,7 +18,7 @@ const QuickLinks = ()=>{
             <div>
                 <div className={"grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-2 "+ cardNormal}>
                     <NavigatePageLink gotopage="/Login/teacherLogin">Teacher's Login</NavigatePageLink>
-                    <NavigatePageLink gotopage="/Login/studentLogin">Student's Login</NavigatePageLink>
+                    <NavigatePageLink gotopage="/Login/student">Student's Login</NavigatePageLink>
                     <NavigatePageLink gotopage="#">Announcements</NavigatePageLink>
                 </div>
             </div>

@@ -4,7 +4,7 @@ import TextLink from "../components/TextLink"
 import CardWrapper from "../Wrappers/CardWrapper"
 import MainContentWrappper from "../Wrappers/MainContentWrapper"
 
-const StudentLogin = ()=>{
+const student = ()=>{
     return(
         <MainContentWrappper>
             <div className="flex justify-center">
@@ -30,4 +30,4 @@ const StudentLogin = ()=>{
     )
 }
 
-export default StudentLogin
+export default student

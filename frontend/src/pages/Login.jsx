@@ -12,7 +12,7 @@ const Login = ()=>{
                         imageSrc="../../public/images/teacher.png"
                     >Teacher's Login</ImageLink>
                     <ImageLink 
-                        gotopage="/Login/studentLogin"
+                        gotopage="/Login/student"
                         imageSrc="../../public/images/student.png"
                     >Student's Login</ImageLink>
                 </div>
