@@ -1,6 +1,7 @@
 import MainContentWrappper from "../Wrappers/MainContentWrapper"
 import CardWrapper from "../Wrappers/CardWrapper"
-import { h1Style, h2Style, h3Style, pStyle } from "./Styles/tailwind-styles"
+import { h1Style, h2Style, h3Style, pStyle } from "./../responsive-styles-for-elements/tailwind-styles-exports"
+import Line from "../components/Line"
 
 const About = ()=>{
     
@@ -9,6 +10,7 @@ const About = ()=>{
             <CardWrapper>
                 <div className="font-poppins sm:p-24">
                     <h1 className={h1Style}>About Our School</h1>
+                    <Line thick="2" />
                     <p className={pStyle}>
                         Welcome to Some Random Higher Secondary School, located in the heart of RandomPlace. Established with the mission to provide quality education and foster holistic development, our school is dedicated to nurturing young minds and preparing them for a bright future.
                     </p>

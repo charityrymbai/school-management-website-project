@@ -20,7 +20,7 @@ function Header(){
         };
     }, []);
 
-    const headerHeight = Math.max(70, 350 - scrollY);
+    const headerHeight = Math.max(70, 300 - scrollY);
     const imageWidth = Math.max(50, 200 - scrollY);
     const fontSize = Math.max(((screenWidth<650)? 1 : 1.5), ((screenWidth<768)? 2:3) - scrollY/100); 
   

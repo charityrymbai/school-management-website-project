@@ -3,14 +3,14 @@ import QuickLinks from "../components/QuickLinks";
 import Slideshow from "../components/Slideshow";
 import MainContentWrappper from "../Wrappers/MainContentWrapper";
 import CardWrapper from "../Wrappers/CardWrapper";
-import { h1Style, h2Style, h3Style, pStyle } from "./Styles/tailwind-styles"
+import { h1Style, h2Style, h3Style, pStyle } from "../responsive-styles-for-elements/tailwind-styles-exports"
 
 const Home = ()=>{
     return (
-        <>
+        <div className="w-full">
             <MainContentWrappper>
                 <Slideshow />
-                <div className="grid grid-cols-1 lg:grid-cols-4">
+                <div className="grid grid-cols-1 lg:grid-cols-4 gap-7">
                     {/* Left Section */}
                     <div>
                         <CardWrapper>
@@ -18,7 +18,7 @@ const Home = ()=>{
                         </CardWrapper>
                     </div>
                     {/* MainSection */}
-                    <div className="text-poppins col-span-3">
+                    <div className="text-poppins col-span-3 p-2">
                         <CardWrapper>
                         <div className="sm:p-10">
                             <h1 className={h1Style}>Welcome to Some Random Higher Secondary School, RandomPlace!</h1>
@@ -39,7 +39,7 @@ const Home = ()=>{
                     </div>
                 </div>
             </MainContentWrappper>
-        </>
+        </div>
     )
 }
 

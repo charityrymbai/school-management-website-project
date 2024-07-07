@@ -1,6 +1,6 @@
 const MainContentWrappper = ({children}) => {
     return (
-        <div className="pt-[410px] p-5">
+        <div className="pt-[350px] p-5">
             {children}
         </div>
     );

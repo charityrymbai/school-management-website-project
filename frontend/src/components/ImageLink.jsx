@@ -2,7 +2,7 @@ import CardWrapper from "../Wrappers/CardWrapper"
 
 import {useNavigate} from 'react-router-dom'
 
-const LoginCard = ({text, imageSrc, gotopage})=>{
+const ImageLink = ({children, imageSrc, gotopage})=>{
 
     const navigate = useNavigate()
 
@@ -17,10 +17,10 @@ const LoginCard = ({text, imageSrc, gotopage})=>{
                     className="h-[200px]"
                     src={imageSrc}
                 ></img>
-                {text}
+                {children}
             </CardWrapper>
         </div>
     )
 }
 
-export default LoginCard
+export default ImageLink
