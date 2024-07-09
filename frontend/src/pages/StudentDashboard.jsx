@@ -1,24 +1,22 @@
-import { Route, Routes } from "react-router-dom"
-import SideMenu from "./../components/SideMenu"
-import Overview from "./Overview"
-import Library from "./Library"
-import Grades from "./Grades"
-import Attendance from "./Attendance"
-import Fees from "./Fees"
 
+import RoutesWithSidePanel from "../Routes/RoutesWithSidePanel.jsx"
+
+import { SidebarItem } from "../components/Sidebar.jsx"
+import Sidebar from "../components/Sidebar.jsx"
 
 import { Layers, BookCopy, Wallet, BookOpenCheck, PersonStanding } from "lucide-react"
 
+
 const StudentDashboard = ()=>{
     return <div className="flex">
-        <SideMenu />
-        <Routes>
-            <Route path="overview" element={<Overview />} />
-            <Route path="library" element={<Library />} />
-            <Route path="grades" element={<Grades />} />
-            <Route path="attendance" element={<Attendance />} />
-            <Route path="fees" element={<Fees />} />
-        </Routes>
+        <Sidebar>
+            <SidebarItem goToPage="overview" icon={<Layers size={20} />} text="Overview"></SidebarItem>
+            <SidebarItem goToPage="Library" icon={<BookCopy size={20} />} text="Library"></SidebarItem>
+            <SidebarItem goToPage="Grades" icon={<BookOpenCheck size={20} />} text="Grades"></SidebarItem>
+            <SidebarItem goToPage="Attendance" icon={<PersonStanding size={20} />} text="Attendance"></SidebarItem>
+            <SidebarItem goToPage="Fees" icon={<Wallet size={20} />} text="Fees"></SidebarItem>
+        </Sidebar>
+        <RoutesWithSidePanel />
     </div>
 }
 
