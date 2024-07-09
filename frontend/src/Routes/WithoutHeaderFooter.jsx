@@ -6,8 +6,8 @@ import TeacherDashboard from '../pages/TeacherDashboard'
 const WithoutHeaderFooter = () => {
     return <>
         <Routes>
-            <Route path="student" element={<StudentDashboard />} />
-            <Route path="teacher" element={<TeacherDashboard />} />
+            <Route path="student/*" element={<StudentDashboard />} />
+            <Route path="teacher/*" element={<TeacherDashboard />} />
         </Routes>
     </>
 }
