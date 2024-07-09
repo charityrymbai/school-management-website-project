@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom"
+import { Route, Routes, Navigate } from "react-router-dom"
 
 import Overview from "../pages/Overview"
 import Library from "../pages/Library"
@@ -9,6 +9,7 @@ import Fees from "../pages/Fees"
 const RoutesWithSidePanel = () => {
     return <>
         <Routes>
+            <Route path="" element={<Navigate to="overview" />} />
             <Route path="overview" element={<Overview />} />
             <Route path="library" element={<Library />} />
             <Route path="grades" element={<Grades />} />
