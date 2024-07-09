@@ -1,7 +1,6 @@
 import {useNavigate} from 'react-router-dom'
 
 const NavigatePageLink = ({gotopage,children})=>{
-
     const navigate = useNavigate()
     
     return(

@@ -3,7 +3,7 @@ import { Routes, Route }from 'react-router-dom'
 import StudentDashboard from "../pages/StudentDashboard"
 import TeacherDashboard from '../pages/TeacherDashboard'
 
-const WithoutHeaderFooter = () => {
+const RoutesWithoutHeaderFooter = () => {
     return <>
         <Routes>
             <Route path="student/*" element={<StudentDashboard />} />
@@ -11,4 +11,4 @@ const WithoutHeaderFooter = () => {
         </Routes>
     </>
 }
-export default WithoutHeaderFooter
+export default RoutesWithoutHeaderFooter

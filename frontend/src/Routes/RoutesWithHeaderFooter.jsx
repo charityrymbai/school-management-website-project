@@ -1,14 +1,14 @@
 import { Routes, Route }from 'react-router-dom'
 
-import Header from "./../components/Header"
-import Footer from "./../components/Footer"
-import Home from "./../pages/Home"
-import About from './../pages/About'
-import Login from './../pages/Login'
-import Contact from './../pages/Contact'
+import Header from "../components/Header"
+import Footer from "../components/Footer"
+import Home from "../pages/Home"
+import About from '../pages/About'
+import Login from '../pages/Login'
+import Contact from '../pages/Contact'
 import LoginPortal from '../pages/LoginPortal'
 
-const WithHeaderFooter = () => {
+const RoutesWithHeaderFooter = () => {
     return <div className='bg-blue-100'>
         <Header />
         <Routes>
@@ -22,4 +22,4 @@ const WithHeaderFooter = () => {
         </div>
 }
 
-export default WithHeaderFooter
+export default RoutesWithHeaderFooter
