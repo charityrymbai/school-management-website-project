@@ -6,7 +6,6 @@ import Sidebar from "../components/Sidebar.jsx"
 
 import { Layers, BookCopy, Wallet, BookOpenCheck, PersonStanding } from "lucide-react"
 
-
 const StudentDashboard = ()=>{
     return <div className="flex">
         <Sidebar>

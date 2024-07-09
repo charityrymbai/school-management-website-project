@@ -4,7 +4,6 @@ import {useNavigate} from 'react-router-dom'
 import NavigatePageLink from "./NavigatePageLink"
 import Line from "./Line"
 
-
 const QuickLinks = ()=>{
 
     const navigate = useNavigate()
