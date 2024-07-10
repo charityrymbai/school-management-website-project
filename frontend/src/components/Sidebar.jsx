@@ -10,7 +10,7 @@ export default function Sidebar({ children }) {
   const [expanded, setExpanded] = useState(true)
   
   return (
-    <aside className="h-screen w-full sm:w-fit sm:z-50">
+    <aside className="h-screen fixed">
       <nav className="h-full flex flex-col bg-white border-r shadow-sm">
         <div className="p-4 pb-2 flex justify-between items-center">
           <img

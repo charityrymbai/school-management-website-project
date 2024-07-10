@@ -7,7 +7,7 @@ const AttendanceCard = ({attended, missed}) => {
     return (
         <div>
             <CardWrapper3 heading="Attendance">
-                <div className="flex items-center">
+                <div className="flex items-center justify-center">
                     <div>
                         <div className={cardNormal}>
                             <h5>Attended: {attended}</h5>
