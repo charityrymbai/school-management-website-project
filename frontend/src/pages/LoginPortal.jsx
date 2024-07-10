@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom"
 
 import MainContentWrappper from "../Wrappers/MainContentWrapper";
-import CardWrapper from "../Wrappers/CardWrapper";
+import { CardWrapper1 } from "../Wrappers/CardWrapper";
 import Heading1 from "../components/Heading1"
 import SignInOutButton from "../components/SignInOutButton"
 import TextLink from "../components/TextLink"
@@ -12,7 +12,7 @@ const LoginPortal = () =>{
     return <>
         <MainContentWrappper>
             <div className="flex justify-center">
-                <CardWrapper width={300}>
+                <CardWrapper1 width={300}>
                     <div className="grid grid-cols-1 w-[200px]">
                         <Heading1>Welcome {params.user}s!!</Heading1>
                         <input 
@@ -28,7 +28,7 @@ const LoginPortal = () =>{
                         <TextLink href="#">Forgot Password?</TextLink>
                         <SignInOutButton>Sign in</SignInOutButton>
                     </div>
-                </CardWrapper>
+                </CardWrapper1>
             </div>
         </MainContentWrappper>
     </>

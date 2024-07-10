@@ -1,9 +1,10 @@
 
 import QuickLinks from "../components/QuickLinks";
+import Announcements from "../components/Announcements.jsx";
 import Slideshow from "../components/Slideshow";
 import MainContentWrappper from "../Wrappers/MainContentWrapper";
-import CardWrapper from "../Wrappers/CardWrapper";
-import { h1Style, h2Style, h3Style, pStyle } from "../responsive-styles-for-elements/tailwind-styles-exports"
+import { CardWrapper1 } from "../Wrappers/CardWrapper";
+import { h1Style, pStyle } from "../responsive-styles-for-elements/tailwind-styles-exports"
 
 const Home = ()=>{
     return (
@@ -13,13 +14,12 @@ const Home = ()=>{
                 <div className="grid grid-cols-1 lg:grid-cols-4 gap-7">
                     {/* Left Section */}
                     <div>
-                        <CardWrapper>
-                            <QuickLinks />
-                        </CardWrapper>
+                        <QuickLinks />
+                        <Announcements />
                     </div>
                     {/* MainSection */}
                     <div className="text-poppins col-span-3 p-2">
-                        <CardWrapper>
+                        <CardWrapper1>
                         <div className="sm:p-10">
                             <h1 className={h1Style}>Welcome to Some Random Higher Secondary School, RandomPlace!</h1>
                             <p className={pStyle}>
@@ -35,7 +35,7 @@ const Home = ()=>{
                             The Some Random Higher Secondary School Team<br/>
                             </p>
                         </div>
-                        </CardWrapper>
+                        </CardWrapper1>
                     </div>
                 </div>
             </MainContentWrappper>

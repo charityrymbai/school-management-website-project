@@ -1,5 +1,5 @@
 import MainContentWrappper from "../Wrappers/MainContentWrapper"
-import CardWrapper from "../Wrappers/CardWrapper"
+import { CardWrapper1 } from "../Wrappers/CardWrapper"
 import { h1Style, h2Style, h3Style, pStyle } from "./../responsive-styles-for-elements/tailwind-styles-exports"
 import Line from "../components/Line"
 
@@ -7,7 +7,7 @@ const About = ()=>{
     
     return (
         <MainContentWrappper>
-            <CardWrapper>
+            <CardWrapper1>
                 <div className="font-poppins sm:p-24">
                     <h1 className={h1Style}>About Our School</h1>
                     <Line thick="2" />
@@ -52,7 +52,7 @@ const About = ()=>{
                         Join us at Some Random Higher Secondary School, RandomPlace, where education meets excellence and every student is empowered to achieve their full potential.
                     </p>
                 </div>
-            </CardWrapper>
+            </CardWrapper1>
         </MainContentWrappper>
     )
 }

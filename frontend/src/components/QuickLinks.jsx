@@ -1,25 +1,28 @@
 import { cardNormal, cardHeading } from "./../responsive-styles-for-elements/tailwind-styles-exports"
 
-import {useNavigate, Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Line from "./Line"
+import { CardWrapper1 } from "../Wrappers/CardWrapper"
 
 const QuickLinks = ()=>{
 
-    const navigate = useNavigate()
-
     return (
-        <div className="text-center text-inter">
-            <h1
-                className={cardHeading}
-            >Quick Links</h1>
-            <Line thick={2}></Line>
-            <div>
-                <div className={"w-full h-fit grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-2 "+ cardNormal}>
-                    <Link to={"login/Teacher"}>Teacher's Login</Link>
-                    <Link to={"login/Student"}>Student's Login</Link>
+        <CardWrapper1>
+            <div className="text-center text-inter">
+                <h1
+                    className={cardHeading}
+                >Quick Links</h1>
+                <Line thick={2}></Line>
+                <div>
+                    <div className={"w-full h-fit grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-2 "+ cardNormal}>
+                        <ul className="list-disc list-inside">
+                            <li><Link to={"login/Teacher"}>Teacher's Login</Link></li>
+                            <li><Link to={"login/Student"}>Student's Login</Link></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
+        </CardWrapper1>
     )
 }
 
