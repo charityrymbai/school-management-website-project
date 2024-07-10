@@ -11,6 +11,7 @@ export default {
         'poppins': ["Poppins","sans-serif"],
         'montserrat': ["Montserrat","sans-serif"],
         'open_sans': ["Open Sans","sans-serif"],
+        'taviraj': ["Taviraj", "serif"]
       },
       colors:{
         
