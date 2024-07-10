@@ -1,7 +1,6 @@
 import { cardNormal, cardHeading } from "./../responsive-styles-for-elements/tailwind-styles-exports"
 
-import {useNavigate} from 'react-router-dom'
-import NavigatePageLink from "./NavigatePageLink"
+import {useNavigate, Link} from 'react-router-dom'
 import Line from "./Line"
 
 const QuickLinks = ()=>{
@@ -15,10 +14,9 @@ const QuickLinks = ()=>{
             >Quick Links</h1>
             <Line thick={2}></Line>
             <div>
-                <div className={"grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-2 "+ cardNormal}>
-                    <NavigatePageLink gotopage="/Login/teacherLogin">Teacher's Login</NavigatePageLink>
-                    <NavigatePageLink gotopage="/Login/student">Student's Login</NavigatePageLink>
-                    <NavigatePageLink gotopage="#">Announcements</NavigatePageLink>
+                <div className={"w-full h-fit grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-2 "+ cardNormal}>
+                    <Link to={"login/Teacher"}>Teacher's Login</Link>
+                    <Link to={"login/Student"}>Student's Login</Link>
                 </div>
             </div>
         </div>
