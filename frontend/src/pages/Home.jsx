@@ -11,14 +11,14 @@ const Home = ()=>{
         <div className="w-full">
             <MainContentWrappper>
                 <Slideshow />
-                <div className="grid grid-cols-1 lg:grid-cols-4 gap-7">
+                <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
                     {/* Left Section */}
-                    <div>
+                    <div className="h-fit grid grid-cols-1 gap-3">
                         <QuickLinks />
                         <Announcements />
                     </div>
                     {/* MainSection */}
-                    <div className="text-poppins col-span-3 p-2">
+                    <div className="text-poppins col-span-3">
                         <CardWrapper1>
                         <div className="sm:p-10">
                             <h1 className={h1Style}>Welcome to Some Random Higher Secondary School, RandomPlace!</h1>
