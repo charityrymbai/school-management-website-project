@@ -1,4 +1,4 @@
-import { MoreVertical, ChevronLast, ChevronFirst, Menu, X } from "lucide-react";
+import { ChevronLast, ChevronFirst, Menu, X } from "lucide-react";
 import { useContext, createContext, useState } from "react";
 import { schoolLogo } from "../../public/images/photosExports";
 import { useBaseNavigate } from "../utils/useBaseNavigation.js";
@@ -12,12 +12,12 @@ export default function Sidebar({ children }) {
   return (
     <>
       <aside
-        className={`h-screen w-full md:w-fit fixed top-0 left-0 z-50 bg-white border-r shadow-sm transition-transform transform ${
+        className={`h-screen fixed w-full md:sticky md:w-fit top-0 z-50 bg-white border-r shadow-sm transition-transform transform ${
           showSidebar ? "translate-x-0" : "-translate-x-full"
-        } md:translate-x-0 md:static`}
+        } md:translate-x-0`}
       >
         <nav className="h-full flex flex-col">
-          <div className="p-4 pb-2 flex justify-between items-center">
+          <div className="p-4 pb-2 flex justify-center md:justify-between items-center">
             <img
               src={schoolLogo}
               className={`overflow-hidden transition-all ${
@@ -37,7 +37,7 @@ export default function Sidebar({ children }) {
             <ul className="flex-1 px-3">{children}</ul>
           </SidebarContext.Provider>
 
-          <div className="border-t flex p-3">
+          <div className="border-t flex p-3 flex justify-center md:justify-between">
             <img
               src="https://ui-avatars.com/api/?background=c7d2fe&color=3730a3&bold=true"
               alt="Avatar"
@@ -45,7 +45,8 @@ export default function Sidebar({ children }) {
             />
             <div
               className={`
-                flex justify-between items-center
+                flex justify-center items-center text-center
+                md:justify-normal md:text-left
                 overflow-hidden transition-all ${expanded ? "w-52 ml-3" : "w-0"}
             `}
             >
@@ -55,13 +56,15 @@ export default function Sidebar({ children }) {
                 <br />
                 <span className="text-xs text-gray-600">Roll no: 12</span>
               </div>
-              <MoreVertical size={20} />
             </div>
           </div>
         </nav>
       </aside>
       <button
-        onClick={() => setShowSidebar((curr) => !curr)}
+        onClick={() => {
+          setShowSidebar((curr) => !curr)
+          setExpanded(true)
+        }}
         className="fixed top-5 right-5 md:hidden p-2 bg-white rounded-full shadow-lg z-50"
       >
         <Menu size={24} />
@@ -84,9 +87,11 @@ export function SidebarItem({ icon, text, active, alert, goToPage }) {
     <li
       onClick={onClickHandler}
       className={`
-        relative flex items-center py-2 px-3 my-1
+        relative flex justify-center text-center py-2 px-3 my-1
+        md:justify-normal md:text-left 
         font-medium rounded-md cursor-pointer
         transition-colors group
+
         ${
           active
             ? "bg-gradient-to-tr from-indigo-200 to-indigo-100 text-indigo-800"
