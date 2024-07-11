@@ -2,6 +2,7 @@ import { ChevronLast, ChevronFirst, Menu, X } from "lucide-react";
 import { useContext, createContext, useState } from "react";
 import { schoolLogo } from "../../public/images/photosExports";
 import { useBaseNavigate } from "../utils/useBaseNavigation.js";
+import { useLocation } from "react-router-dom";
 
 const SidebarContext = createContext();
 
@@ -73,10 +74,13 @@ export default function Sidebar({ children }) {
   );
 }
 
-export function SidebarItem({ icon, text, active, alert, goToPage }) {
+export function SidebarItem({ icon, text, alert, goToPage }) {
   const { expanded, setShowSidebar } = useContext(SidebarContext);
+  const location = useLocation()
 
   const baseNavigate = useBaseNavigate("/dashboard/student");
+
+  const active = location.pathname.includes(goToPage)
 
   function onClickHandler() {
     setShowSidebar(false);
