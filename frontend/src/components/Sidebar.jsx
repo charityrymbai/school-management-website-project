@@ -1,71 +1,85 @@
-import { MoreVertical, ChevronLast, ChevronFirst } from "lucide-react"
-import { useContext, createContext, useState } from "react"
-import { schoolLogo }  from "../../public/images/photosExports"
+import { MoreVertical, ChevronLast, ChevronFirst, Menu, X } from "lucide-react";
+import { useContext, createContext, useState } from "react";
+import { schoolLogo } from "../../public/images/photosExports";
+import { useBaseNavigate } from "../utils/useBaseNavigation.js";
 
-import { useBaseNavigate } from "../utils/useBaseNavigation.js"
-
-const SidebarContext = createContext()
+const SidebarContext = createContext();
 
 export default function Sidebar({ children }) {
-  const [expanded, setExpanded] = useState(true)
-  
+  const [expanded, setExpanded] = useState(true);
+  const [showSidebar, setShowSidebar] = useState(false);
+
   return (
-    <aside className="h-screen fixed">
-      <nav className="h-full flex flex-col bg-white border-r shadow-sm">
-        <div className="p-4 pb-2 flex justify-between items-center">
-          <img
-            src={schoolLogo}
-            className={`overflow-hidden transition-all ${
-              expanded ? "w-32" : "w-0"
-            }`}
-            alt=""
-          />
-          <button
-            onClick={() => setExpanded((curr) => !curr)}
-            className="p-1.5 rounded-lg bg-gray-50 hover:bg-gray-100"
-          >
-            {expanded ? <ChevronFirst /> : <ChevronLast />}
-          </button>
-        </div>
-
-        <SidebarContext.Provider value={{ expanded }}>
-          <ul className="flex-1 px-3">{children}</ul>
-        </SidebarContext.Provider>
-
-        <div className="border-t flex p-3">
-          <img
-            src="https://ui-avatars.com/api/?background=c7d2fe&color=3730a3&bold=true"
-            alt="Avatar"
-            className="w-10 h-10 rounded-md"
-          />
-          <div
-            className={`
-              flex justify-between items-center
-              overflow-hidden transition-all ${expanded ? "w-52 ml-3" : "w-0"}
-          `}
-          >
-            <div className="leading-4">
-              <h4 className="font-semibold">John Doe</h4>
-              <span className="text-xs text-gray-600">Class: VI</span><br />
-              <span className="text-xs text-gray-600">Roll no: 12</span>
-            </div>
-            <MoreVertical size={20} />
+    <>
+      <aside
+        className={`h-screen w-full md:w-fit fixed top-0 left-0 z-50 bg-white border-r shadow-sm transition-transform transform ${
+          showSidebar ? "translate-x-0" : "-translate-x-full"
+        } md:translate-x-0 md:static`}
+      >
+        <nav className="h-full flex flex-col">
+          <div className="p-4 pb-2 flex justify-between items-center">
+            <img
+              src={schoolLogo}
+              className={`overflow-hidden transition-all ${
+                expanded ? "w-32" : "w-0"
+              }`}
+              alt=""
+            />
+            <button
+              onClick={() => setExpanded((curr) => !curr)}
+              className="p-1.5 rounded-lg bg-gray-50 hover:bg-gray-100 hidden md:block"
+            >
+              { expanded ? <ChevronFirst /> : <ChevronLast />}
+            </button>
           </div>
-        </div>
-      </nav>
-    </aside>
-  )
+
+          <SidebarContext.Provider value={{ expanded, setShowSidebar }}>
+            <ul className="flex-1 px-3">{children}</ul>
+          </SidebarContext.Provider>
+
+          <div className="border-t flex p-3">
+            <img
+              src="https://ui-avatars.com/api/?background=c7d2fe&color=3730a3&bold=true"
+              alt="Avatar"
+              className="w-10 h-10 rounded-md"
+            />
+            <div
+              className={`
+                flex justify-between items-center
+                overflow-hidden transition-all ${expanded ? "w-52 ml-3" : "w-0"}
+            `}
+            >
+              <div className="leading-4">
+                <h4 className="font-semibold">John Doe</h4>
+                <span className="text-xs text-gray-600">Class: VI</span>
+                <br />
+                <span className="text-xs text-gray-600">Roll no: 12</span>
+              </div>
+              <MoreVertical size={20} />
+            </div>
+          </div>
+        </nav>
+      </aside>
+      <button
+        onClick={() => setShowSidebar((curr) => !curr)}
+        className="fixed top-5 right-5 md:hidden p-2 bg-white rounded-full shadow-lg z-50"
+      >
+        <Menu size={24} />
+      </button>
+    </>
+  );
 }
 
-export function SidebarItem({ icon, text, active, alert, goToPage}) {
-  const { expanded } = useContext(SidebarContext)
+export function SidebarItem({ icon, text, active, alert, goToPage }) {
+  const { expanded, setShowSidebar } = useContext(SidebarContext);
 
-  const baseNavigate = useBaseNavigate("/dashboard/student")
+  const baseNavigate = useBaseNavigate("/dashboard/student");
 
-  function onClickHandler(){
-    baseNavigate(goToPage)
+  function onClickHandler() {
+    setShowSidebar(false);
+    baseNavigate(goToPage);
   }
-  
+
   return (
     <li
       onClick={onClickHandler}
@@ -109,5 +123,5 @@ export function SidebarItem({ icon, text, active, alert, goToPage}) {
         </div>
       )}
     </li>
-  )
+  );
 }
