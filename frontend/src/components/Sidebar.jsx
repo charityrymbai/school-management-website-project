@@ -1,5 +1,5 @@
 import { ChevronLast, ChevronFirst, Menu, X } from "lucide-react";
-import { useContext, createContext, useState } from "react";
+import { useContext, createContext, useState, useEffect } from "react";
 import { schoolLogo } from "../../public/images/photosExports";
 import { useBaseNavigate } from "../utils/useBaseNavigation.js";
 import { useLocation } from "react-router-dom";
@@ -9,6 +9,28 @@ const SidebarContext = createContext();
 export default function Sidebar({ children }) {
   const [expanded, setExpanded] = useState(true);
   const [showSidebar, setShowSidebar] = useState(false);
+
+  let [student, setStudent] = useState({}) 
+
+  const token = localStorage.getItem("token"); 
+  if (!token){
+      navigate("/login/Student")
+  }
+
+  useEffect(()=>{
+    fetch("http://127.0.0.1:8787/api/v1/student/getStudentDetails",{
+        method: "POST", 
+        body: JSON.stringify({
+            token
+        })
+    })
+    .then((res)=>{
+        return res.json();
+    })
+    .then((data)=>{
+        setStudent(data)
+    })
+  },[])
 
   return (
     <>
@@ -38,7 +60,7 @@ export default function Sidebar({ children }) {
             <ul className="flex-1 px-3">{children}</ul>
           </SidebarContext.Provider>
 
-          <div className="border-t flex p-3 flex justify-center md:justify-between">
+          <div className="border-t p-3 flex justify-center md:justify-between">
             <img
               src="https://ui-avatars.com/api/?background=c7d2fe&color=3730a3&bold=true"
               alt="Avatar"
@@ -52,10 +74,10 @@ export default function Sidebar({ children }) {
             `}
             >
               <div className="leading-4">
-                <h4 className="font-semibold">John Doe</h4>
-                <span className="text-xs text-gray-600">Class: VI</span>
+                <h4 className="font-semibold">{`${student.firstName} ${student.lastName}`}</h4>
+                <span className="text-xs text-gray-600">Class: {student.class}</span>
                 <br />
-                <span className="text-xs text-gray-600">Roll no: 12</span>
+                <span className="text-xs text-gray-600">Roll no: {student.roll_no}</span>
               </div>
             </div>
           </div>

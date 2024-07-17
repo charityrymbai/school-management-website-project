@@ -56,7 +56,7 @@ studentRouter.post('/signin', async (c) => {
 });
 
 
-studentRouter.post('/getGames', studAuthMiddleware,  async (c) => {
+studentRouter.post('/getStudentDetails', studAuthMiddleware,  async (c) => {
   return c.json(c.student)
 });
 
