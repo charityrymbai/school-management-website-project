@@ -18,7 +18,7 @@ export default function Sidebar({ children }) {
   }
 
   useEffect(()=>{
-    fetch("http://127.0.0.1:8787/api/v1/student/getStudentDetails",{
+    fetch("${process.env.REACT_APP_API_URL}/api/v1/student/getStudentDetails",{
         method: "POST", 
         body: JSON.stringify({
             token

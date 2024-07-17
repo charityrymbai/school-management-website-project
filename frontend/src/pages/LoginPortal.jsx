@@ -20,7 +20,7 @@ const LoginPortal = () =>{
     }
 
     const onclickHandler = async ()=>{
-        const res = await fetch("http://127.0.0.1:8787/api/v1/student/signin",{
+        const res = await fetch("${process.env.REACT_APP_API_URL}/api/v1/student/signin",{
             method: "POST", 
             body: JSON.stringify({
                 std_id: parseInt(std_id), 
