@@ -1,8 +1,29 @@
 # **Techstack used**
 
-### FrontEnd
+## FrontEnd
+
+### Build Framework
+- Vite
+### Libraries
 - React 
+### Styling Framework
 - Tailwind CSS
+
+## Backend
+
+Backend is deployed using Cloudflare Workers - Serverless functions
+
+### Framework Used
+- Hono
+
+### Input Validation Library
+- Zod
+
+### Authentication
+- Hono/jwt middleware
+
+## Database
+- Postgres
 
 
 ## **Website Outline for School Management**
