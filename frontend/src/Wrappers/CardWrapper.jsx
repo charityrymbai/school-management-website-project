@@ -2,7 +2,7 @@ export const CardWrapper1 = (props)=>{
     
     return (
         <div
-            className={`w-full grid place-content-center p-5 bg-white rounded-lg shadow-xl ${props.custom}`}  
+            className={`w-full grid place-content-center my-3 p-5 bg-white rounded-lg shadow-xl ${props.custom}`}  
         >
             {props.children}
         </div>
@@ -12,7 +12,7 @@ export const CardWrapper1 = (props)=>{
 export const CardWrapper2 = (props) => {
     return (
         <div
-            className={`bg-white grid place-content-center w-full h-full border-2 rounded-md p-4 ${props.custom}`}
+            className={`bg-white grid place-content-center w-full h-full border-2 rounded-md p-4 my-3 ${props.custom}`}
         >
             {props.children}
         </div>
