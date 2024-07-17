@@ -18,7 +18,7 @@ export default function Sidebar({ children }) {
   }
 
   useEffect(()=>{
-    fetch("${process.env.REACT_APP_API_URL}/api/v1/student/getStudentDetails",{
+    fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/api/v1/student/getStudentDetails`,{
         method: "POST", 
         body: JSON.stringify({
             token
