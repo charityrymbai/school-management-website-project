@@ -1,0 +1,82 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Student {
+    std_id        Int      @id @default(autoincrement())
+    firstName     String
+    middleName    String?
+    lastName      String
+    date_of_birth DateTime 
+    roll_no       Int
+    cgpa          Float
+    class         Int 
+    missed        Int      @default(0)
+    fees          Fees[]
+    marks         Marks[]
+    libraryBooks  LibraryStd[]
+}
+
+model Teacher {
+    emp_id        Int     @id @default(autoincrement())
+    firstName     String
+    middleName    String?
+    lastName      String
+    date_of_birth DateTime
+    dept          String
+    paid_leaves   Int     @default(20)
+    classDays     ClassDays[]
+    marks         Marks[]
+    libraryBooks  LibraryTeach[]
+}
+
+model Fees {
+    fees_reference_id   Int   @id @default(autoincrement())
+    std_id              Int
+    amount              Int
+    paid_on             DateTime @default(now())
+    installment_no      Int
+    Student_id          Student @relation(fields: [std_id], references: [std_id])
+}
+
+model ClassDays {
+    id            Int       @id
+    emp_id        Int
+    class         Int
+    Teacher_id    Teacher   @relation(fields: [emp_id], references: [emp_id])
+}
+
+model Marks {
+    id            Int       @id
+    std_id        Int 
+    emp_id        Int
+    subject       String
+    Teacher_id    Teacher   @relation(fields: [emp_id], references: [emp_id])
+    Student_id    Student   @relation(fields: [std_id], references: [std_id])
+}
+
+model LibraryStd {
+    id            Int       @id
+    bookName      String    
+    bookNo        Int
+    std_id        Int
+    takenOn       DateTime  @default(now())
+    Student_id    Student   @relation(fields: [std_id], references: [std_id])
+}
+
+model LibraryTeach {
+    id            Int       @id
+    bookName      String    
+    bookNo        Int
+    emp_id        Int
+    takenOn       DateTime  @default(now())
+    Teacher_id    Teacher   @relation(fields: [emp_id], references: [emp_id])
+}
+
+
