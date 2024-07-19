@@ -43,12 +43,12 @@ const LoginPortal = () =>{
     return <>
         <MainContentWrappper>
             <div className="flex justify-center">
-                <CardWrapper1 custom=" w-[500px]">
-                    <div className="grid grid-cols-1 w-[350px] my-8">
-                        <Heading1 className="text-3xl">Welcome {params.user}s!!</Heading1>
+                <CardWrapper1 custom=" w-[300px]">
+                    <div className="grid grid-cols-1 w-[200px]">
+                        <Heading1>Welcome {params.user}s!!</Heading1>
                         <input 
                             className="p-2 h-10 border-2 border-gray-400 rounded-md my-5" 
-                            placeholder={`${params.user} ID Number`}
+                            placeholder="Student ID no"
                             onChange={(e)=>{
                                 setStd_id(e.target.value);
                             }}

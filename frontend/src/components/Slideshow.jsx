@@ -15,7 +15,7 @@ const Slideshow = () => {
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,
-        autoplaySpeed: 5000,
+        autoplaySpeed: 3000,
         centerMode: true,
         centerPadding: '0px',
     };
@@ -29,7 +29,7 @@ const Slideshow = () => {
                     <img 
                         src={image} 
                         alt={`slide-${index}`}
-                        className='w-[2002px] h-[500px]'
+                        className='w-[700px]'
                     />
                 </div>
                 </div>

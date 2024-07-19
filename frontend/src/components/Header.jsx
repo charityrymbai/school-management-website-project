@@ -32,7 +32,7 @@ function Header(){
             className="fixed top-0 w-full z-50"
         >
             <div  
-                className="h-full flex justify-center items-center bg-gradient-to-r from-cyan-500 to-blue-500"
+                className="h-full flex justify-center items-center bg-blue-500 p-2"
             >
                 <div>
                     <img
@@ -44,14 +44,14 @@ function Header(){
                         src="../../images/school_logo.png" 
                     />
                 </div>
-                <div className="pl-5 w-fit text-[#FCF6F5] font-bold">
+                <div className="pl-5 w-fit text-white">
                     <div 
                         style={{
                             fontSize: `${fontSize}rem`
                         }}
                         className="text-center"
                     >
-                        National School of Technology, Shillong
+                        Some Random Higher Secondary School, RandomPlace
                     </div>
                 </div> 
             </div>
