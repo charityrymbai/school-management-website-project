@@ -1,19 +1,18 @@
-
 import { verify } from 'hono/jwt';
 
-const studAuthMiddleware = async (c, next) =>{
-    const body = await c.req.json()
+const studAuthMiddleware = async (c, next) => {
+    const body = await c.req.json();
 
     try {
         const secret = c.env.JWT_SECRET;
-        const verifiedToken = await verify(body.token, secret)
+        const verifiedToken = await verify(body.token, secret);
         c.student = verifiedToken;
         await next();
-    }catch{
+    } catch {
         return c.json({
-            message:"not authorised"
-        })
+            message: 'not authorised',
+        });
     }
-}
+};
 
-export default studAuthMiddleware
+export default studAuthMiddleware;
