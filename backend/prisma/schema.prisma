@@ -1,4 +1,3 @@
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -66,7 +65,7 @@ model Attendance {
 }
 
 model Marks {
-    id            Int       @id
+    id            Int       @id @default(autoincrement())
     std_id        Int 
     emp_id        Int
     subject       String
@@ -75,23 +74,30 @@ model Marks {
 }
 
 model LibraryStd {
-    id            Int       @id
-    bookName      String    
-    bookNo        Int
-    std_id        Int
-    takenOn       DateTime  @default(now())
-    dueDate       DateTime
-    Student_id    Student   @relation(fields: [std_id], references: [std_id])
+    id           Int            @id @default(autoincrement())
+    bookNo       Int            @unique
+    std_id       Int
+    takenOn      DateTime       @default(now())
+    dueDate      DateTime
+    Student_id   Student        @relation(fields: [std_id], references: [std_id])
+    BookDetail       LibraryBooks   @relation(fields: [bookNo], references: [bookNo])
 }
 
 model LibraryTeach {
-    id            Int       @id
-    bookName      String    
-    bookNo        Int
-    emp_id        Int
-    takenOn       DateTime  @default(now())
-    dueDate       DateTime
-    Teacher_id    Teacher   @relation(fields: [emp_id], references: [emp_id])
+    id           Int            @id @default(autoincrement())
+    bookNo       Int            @unique
+    emp_id       Int
+    takenOn      DateTime       @default(now())
+    dueDate      DateTime
+    Teacher_id   Teacher        @relation(fields: [emp_id], references: [emp_id])
+    BookDetail       LibraryBooks   @relation(fields: [bookNo], references: [bookNo])
 }
 
-
+model LibraryBooks {
+    id           Int          @id @default(autoincrement())
+    bookNo       Int          @unique
+    bookName     String
+    createdOn    DateTime     @default(now())
+    Teachers     LibraryTeach[]
+    Students     LibraryStd[]
+}
