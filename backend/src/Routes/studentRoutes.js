@@ -42,7 +42,7 @@ studentRouter.post('/signin', async (c) => {
 
         const secret = c.env.JWT_SECRET;
 
-        const token = await sign(student, secret);
+        const token = await sign( body, secret );
 
         return c.json(
             {
@@ -64,8 +64,62 @@ studentRouter.post('/signin', async (c) => {
     }
 });
 
-studentRouter.post('/getStudentDetails', studAuthMiddleware, async (c) => {
-    return c.json(c.student);
+studentRouter.get('/getStudentDetails', studAuthMiddleware, async (c) => {
+    const prisma = new PrismaClient({
+        datasourceUrl: c.env.DATABASE_URL,
+    }).$extends(withAccelerate());
+
+    try {
+        const studentDetails = await prisma.student.findUnique({
+            where: c.student,
+            include: {
+                fees: true, 
+                libraryBooks: true
+            }
+        });
+
+        return c.json(studentDetails, 200);
+    } catch (error) {
+        console.error(error);
+        return c.json(
+            {
+                message: 'Error getting details',
+            },
+            500
+        );
+    } finally {
+        await prisma.$disconnect();
+    }
 });
+
+
+studentRouter.post('/payFees', studAuthMiddleware, async (c) => {
+    const prisma = new PrismaClient({
+        datasourceUrl: c.env.DATABASE_URL,
+    }).$extends(withAccelerate());
+
+    try {
+        const res = await prisma.fees.create({
+            data: {
+                std_id: c.student.std_id, 
+                amount: parseInt(c.req.query("amount")), 
+                installment_no: parseInt(c.req.query("installment"))
+            }
+        })
+
+        return c.json( res, 200 );
+    } catch (error) {
+        console.error(error);
+        return c.json(
+            {
+                message: 'Server issue',
+            },
+            500
+        );
+    } finally {
+        await prisma.$disconnect();
+    }
+});
+
 
 export default studentRouter;
