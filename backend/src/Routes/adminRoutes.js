@@ -1,7 +1,7 @@
 import { Hono } from 'hono';
 import { PrismaClient } from '@prisma/client/edge';
 import { withAccelerate } from '@prisma/extension-accelerate';
-import { CreateStudentSchema, StudentSchema } from '../ZodSchemas/adminSchemas';
+import { AddBookSchema, CreateStudentSchema, StdLendBookSchema, StudentSchema, TeachLendBookSchema } from '../ZodSchemas/adminSchemas';
 
 const adminRouter = new Hono();
 
@@ -132,5 +132,135 @@ adminRouter.patch('/updateStudent', async (c) => {
         await prisma.$disconnect();
     }
 });
+
+
+adminRouter.post('/stdLendBook', async (c) => {
+    const prisma = new PrismaClient({
+        datasourceUrl: c.env.DATABASE_URL,
+    }).$extends(withAccelerate());
+
+    const payload = await c.req.json(); 
+    const parsedPayload = StdLendBookSchema.safeParse(payload); 
+    if (!parsedPayload.success){
+        return c.json({
+            message: "Wrong inputs"
+        })
+    }
+
+    const takenOn = new Date();
+    const duedate = new Date(takenOn);
+    duedate.setDate(duedate.getDate() + 14); // Add 14 days to takenOn date
+
+    try {
+        const res = await prisma.libraryStd.create({
+            data: {
+                std_id: payload.std_id,
+                bookNo: payload.bookNo, 
+                dueDate: duedate.toISOString(),
+            }
+        })
+
+        return c.json({
+            message: "Record added successfully"
+        })
+        
+    } catch (error) {
+        console.error(error);
+        return c.json(
+            {
+                message: 'Error creating record',
+            },
+            500
+        );
+    } finally {
+        await prisma.$disconnect();
+    }
+});
+
+
+adminRouter.post('/teachLendBook', async (c) => {
+    const prisma = new PrismaClient({
+        datasourceUrl: c.env.DATABASE_URL,
+    }).$extends(withAccelerate());
+
+    const payload = await c.req.json(); 
+    const parsedPayload = TeachLendBookSchema.safeParse(payload); 
+    if (!parsedPayload.success){
+        return c.json({
+            message: "Wrong inputs"
+        })
+    }
+
+    const takenOn = new Date();
+    const duedate = new Date(takenOn);
+    duedate.setDate(duedate.getDate() + 20); // Add 20 days to takenOn date
+
+    try {
+        const res = await prisma.libraryTeach.create({
+            data: {
+                emp_id: payload.emp_id,
+                bookNo: payload.bookNo, 
+                dueDate: duedate.toISOString(),
+            }
+        })
+
+        return c.json({
+            message: "Record added successfully"
+        })
+        
+    } catch (error) {
+        console.error(error);
+        return c.json(
+            {
+                message: 'Error creating record',
+            },
+            500
+        );
+    } finally {
+        await prisma.$disconnect();
+    }
+});
+
+
+adminRouter.post('/addBook', async (c) => {
+    const prisma = new PrismaClient({
+        datasourceUrl: c.env.DATABASE_URL,
+    }).$extends(withAccelerate());
+
+    const payload = await c.req.json(); 
+    console.log(payload)
+    const parsedPayload = AddBookSchema.safeParse(payload); 
+    if (!parsedPayload.success){
+        return c.json({
+            message: "Wrong inputs"
+        })
+    }
+
+    try {
+        const res = await prisma.libraryBooks.create({
+            data: {
+                bookNo: payload.bookNo, 
+                bookName: payload.bookName
+            }
+        })
+
+        return c.json({
+            message: "Book added successfully"
+        })
+        
+    } catch (error) {
+        console.error(error);
+        return c.json(
+            {
+                message: 'Error adding Book',
+            },
+            500
+        );
+    } finally {
+        await prisma.$disconnect();
+    }
+});
+
+
 
 export default adminRouter;
