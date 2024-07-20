@@ -21,6 +21,7 @@ model Student {
     fees          Fees[]
     marks         Marks[]
     libraryBooks  LibraryStd[]
+    attendance    Attendance[] 
 }
 
 model Teacher {
@@ -31,7 +32,7 @@ model Teacher {
     date_of_birth DateTime
     dept          String
     paid_leaves   Int     @default(20)
-    classDays     ClassDays[]
+    subject       Subject[]
     marks         Marks[]
     libraryBooks  LibraryTeach[]
 }
@@ -45,11 +46,23 @@ model Fees {
     Student_id          Student @relation(fields: [std_id], references: [std_id])
 }
 
-model ClassDays {
-    id            Int       @id
+model Subject {
+    sub_id        Int       @id @default(autoincrement())
+    sub_name      String
     emp_id        Int
     class         Int
     Teacher_id    Teacher   @relation(fields: [emp_id], references: [emp_id])
+    attendance    Attendance[]
+}
+
+model Attendance {
+    id            Int       @id @default(autoincrement())
+    sub_id        Int
+    std_id        Int
+    date          DateTime
+    present       Boolean
+    Subject_id    Subject   @relation(fields: [sub_id], references: [sub_id])
+    Student_id    Student   @relation(fields: [std_id], references: [std_id])
 }
 
 model Marks {
@@ -67,6 +80,7 @@ model LibraryStd {
     bookNo        Int
     std_id        Int
     takenOn       DateTime  @default(now())
+    dueDate       DateTime
     Student_id    Student   @relation(fields: [std_id], references: [std_id])
 }
 
@@ -76,6 +90,7 @@ model LibraryTeach {
     bookNo        Int
     emp_id        Int
     takenOn       DateTime  @default(now())
+    dueDate       DateTime
     Teacher_id    Teacher   @relation(fields: [emp_id], references: [emp_id])
 }
 
