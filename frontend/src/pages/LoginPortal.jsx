@@ -48,7 +48,7 @@ const LoginPortal = () =>{
                         <Heading1>Welcome {params.user}s!!</Heading1>
                         <input 
                             className="p-2 h-10 border-2 border-gray-400 rounded-md my-5" 
-                            placeholder="Student ID no"
+                            placeholder={`${params.user} ID No.`}
                             onChange={(e)=>{
                                 setStd_id(e.target.value);
                             }}

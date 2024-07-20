@@ -49,9 +49,9 @@ function Header(){
                         style={{
                             fontSize: `${fontSize}rem`
                         }}
-                        className="text-center"
+                        className="text-center font-bold"
                     >
-                        Some Random Higher Secondary School, RandomPlace
+                        National School of Technology, Shillong
                     </div>
                 </div> 
             </div>
