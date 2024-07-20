@@ -1,0 +1,18 @@
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: #fff;
+    color: #1a202c; /* Dark color for the icons */
+    border-radius: 50%;
+    transition: transform 0.3s, background-color 0.3s;
+    cursor: pointer;
+}
+
+.social-icon:hover {
+    transform: translateY(-5px);
+    background-color: #4c51bf; /* Change background color on hover */
+    color: #fff; /* White color for the icons on hover */
+}

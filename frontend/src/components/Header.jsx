@@ -32,7 +32,7 @@ function Header(){
             className="fixed top-0 w-full z-50"
         >
             <div  
-                className="h-full flex justify-center items-center bg-blue-500 p-2"
+                className="h-full flex justify-center items-center bg-gradient-to-r from-sky-500 to-indigo-500 p-2"
             >
                 <div>
                     <img
