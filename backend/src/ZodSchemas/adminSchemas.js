@@ -18,3 +18,18 @@ export const StudentSchema = zod.object({
     roll_no: zod.number().optional(),
     cgpa: zod.number().optional(),
 });
+
+export const StdLendBookSchema = zod.object({
+    std_id: zod.number(), 
+    bookNo: zod.number() 
+})
+
+export const TeachLendBookSchema = zod.object({
+    emp_id: zod.number(), 
+    bookNo: zod.number()
+})
+
+export const AddBookSchema = zod.object({
+    bookNo: zod.number(), 
+    bookName: zod.string()
+})
