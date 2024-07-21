@@ -1,8 +1,8 @@
-import RoutesWithSidePanel from '../Routes/RoutesWithSidePanel.jsx';
+import React from 'react';
+const RoutesWithSidePanel = React.lazy(()=>import('../Routes/RoutesWithSidePanel.jsx'));
 
 import { SidebarItem } from '../components/Sidebar.jsx';
-import Sidebar from '../components/Sidebar.jsx';
-
+const Sidebar = React.lazy(() => import("../components/Sidebar.jsx"))
 import {
     Layers,
     BookCopy,
