@@ -46,11 +46,11 @@ const LoginPortal = () => {
     };
 
     return (
-        <>
+        <div className="flex justify-center">
             <MainContentWrappper>
-                <div className="flex justify-center">
-                    <CardWrapper1 custom=" w-[300px]">
-                        <div className="grid grid-cols-1 w-[200px]">
+                <div>
+                    <CardWrapper1>
+                        <div className="grid grid-cols-1">
                             <Heading1>Welcome {params.user}s!!</Heading1>
                             <input
                                 className="p-2 h-10 border-2 border-gray-400 rounded-md my-5"
@@ -83,7 +83,7 @@ const LoginPortal = () => {
                     </CardWrapper1>
                 </div>
             </MainContentWrappper>
-        </>
+        </div>
     );
 };
 
