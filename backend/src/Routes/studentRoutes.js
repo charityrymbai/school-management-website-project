@@ -76,9 +76,10 @@ studentRouter.get('/getStudentDetails', studAuthMiddleware, async (c) => {
                 fees: true, 
                 libraryBooks: {
                     include: {
-                    BookDetail: true, 
+                        bookDetail: true, 
                     }
-                }
+                },
+                attendance: true,
             }
         });
 

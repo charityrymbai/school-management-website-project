@@ -42,7 +42,7 @@ model Fees {
     amount              Int
     paid_on             DateTime @default(now())
     installment_no      Int
-    Student_id          Student @relation(fields: [std_id], references: [std_id])
+    Student             Student @relation(fields: [std_id], references: [std_id])
 }
 
 model Subject {
@@ -50,7 +50,7 @@ model Subject {
     sub_name      String
     emp_id        Int
     class         Int
-    Teacher_id    Teacher   @relation(fields: [emp_id], references: [emp_id])
+    teacher       Teacher   @relation(fields: [emp_id], references: [emp_id])
     attendance    Attendance[]
 }
 
@@ -60,8 +60,8 @@ model Attendance {
     std_id        Int
     date          DateTime
     present       Boolean
-    Subject_id    Subject   @relation(fields: [sub_id], references: [sub_id])
-    Student_id    Student   @relation(fields: [std_id], references: [std_id])
+    subject       Subject   @relation(fields: [sub_id], references: [sub_id])
+    student       Student   @relation(fields: [std_id], references: [std_id])
 }
 
 model Marks {
@@ -69,8 +69,8 @@ model Marks {
     std_id        Int 
     emp_id        Int
     subject       String
-    Teacher_id    Teacher   @relation(fields: [emp_id], references: [emp_id])
-    Student_id    Student   @relation(fields: [std_id], references: [std_id])
+    teacher       Teacher   @relation(fields: [emp_id], references: [emp_id])
+    student       Student   @relation(fields: [std_id], references: [std_id])
 }
 
 model LibraryStd {
@@ -79,8 +79,8 @@ model LibraryStd {
     std_id       Int
     takenOn      DateTime       @default(now())
     dueDate      DateTime
-    Student_id   Student        @relation(fields: [std_id], references: [std_id])
-    BookDetail       LibraryBooks   @relation(fields: [bookNo], references: [bookNo])
+    student      Student        @relation(fields: [std_id], references: [std_id])
+    bookDetail   LibraryBooks   @relation(fields: [bookNo], references: [bookNo])
 }
 
 model LibraryTeach {
@@ -89,8 +89,8 @@ model LibraryTeach {
     emp_id       Int
     takenOn      DateTime       @default(now())
     dueDate      DateTime
-    Teacher_id   Teacher        @relation(fields: [emp_id], references: [emp_id])
-    BookDetail       LibraryBooks   @relation(fields: [bookNo], references: [bookNo])
+    teacher      Teacher        @relation(fields: [emp_id], references: [emp_id])
+    bookDetail   LibraryBooks   @relation(fields: [bookNo], references: [bookNo])
 }
 
 model LibraryBooks {
@@ -98,6 +98,6 @@ model LibraryBooks {
     bookNo       Int          @unique
     bookName     String
     createdOn    DateTime     @default(now())
-    Teachers     LibraryTeach[]
-    Students     LibraryStd[]
+    teacherLib   LibraryTeach[]
+    studentLib   LibraryStd[]
 }
