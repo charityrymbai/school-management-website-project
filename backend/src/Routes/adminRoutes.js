@@ -1,7 +1,13 @@
 import { Hono } from 'hono';
 import { PrismaClient } from '@prisma/client/edge';
 import { withAccelerate } from '@prisma/extension-accelerate';
-import { AddBookSchema, CreateStudentSchema, StdLendBookSchema, StudentSchema, TeachLendBookSchema } from '../ZodSchemas/adminSchemas';
+import {
+    AddBookSchema,
+    CreateStudentSchema,
+    StdLendBookSchema,
+    StudentSchema,
+    TeachLendBookSchema,
+} from '../ZodSchemas/adminSchemas';
 
 const adminRouter = new Hono();
 
@@ -133,18 +139,17 @@ adminRouter.patch('/updateStudent', async (c) => {
     }
 });
 
-
 adminRouter.post('/stdLendBook', async (c) => {
     const prisma = new PrismaClient({
         datasourceUrl: c.env.DATABASE_URL,
     }).$extends(withAccelerate());
 
-    const payload = await c.req.json(); 
-    const parsedPayload = StdLendBookSchema.safeParse(payload); 
-    if (!parsedPayload.success){
+    const payload = await c.req.json();
+    const parsedPayload = StdLendBookSchema.safeParse(payload);
+    if (!parsedPayload.success) {
         return c.json({
-            message: "Wrong inputs"
-        })
+            message: 'Wrong inputs',
+        });
     }
 
     const takenOn = new Date();
@@ -155,15 +160,14 @@ adminRouter.post('/stdLendBook', async (c) => {
         const res = await prisma.libraryStd.create({
             data: {
                 std_id: payload.std_id,
-                bookNo: payload.bookNo, 
+                bookNo: payload.bookNo,
                 dueDate: duedate.toISOString(),
-            }
-        })
+            },
+        });
 
         return c.json({
-            message: "Record added successfully"
-        })
-        
+            message: 'Record added successfully',
+        });
     } catch (error) {
         console.error(error);
         return c.json(
@@ -177,18 +181,17 @@ adminRouter.post('/stdLendBook', async (c) => {
     }
 });
 
-
 adminRouter.post('/teachLendBook', async (c) => {
     const prisma = new PrismaClient({
         datasourceUrl: c.env.DATABASE_URL,
     }).$extends(withAccelerate());
 
-    const payload = await c.req.json(); 
-    const parsedPayload = TeachLendBookSchema.safeParse(payload); 
-    if (!parsedPayload.success){
+    const payload = await c.req.json();
+    const parsedPayload = TeachLendBookSchema.safeParse(payload);
+    if (!parsedPayload.success) {
         return c.json({
-            message: "Wrong inputs"
-        })
+            message: 'Wrong inputs',
+        });
     }
 
     const takenOn = new Date();
@@ -199,15 +202,14 @@ adminRouter.post('/teachLendBook', async (c) => {
         const res = await prisma.libraryTeach.create({
             data: {
                 emp_id: payload.emp_id,
-                bookNo: payload.bookNo, 
+                bookNo: payload.bookNo,
                 dueDate: duedate.toISOString(),
-            }
-        })
+            },
+        });
 
         return c.json({
-            message: "Record added successfully"
-        })
-        
+            message: 'Record added successfully',
+        });
     } catch (error) {
         console.error(error);
         return c.json(
@@ -221,33 +223,31 @@ adminRouter.post('/teachLendBook', async (c) => {
     }
 });
 
-
 adminRouter.post('/addBook', async (c) => {
     const prisma = new PrismaClient({
         datasourceUrl: c.env.DATABASE_URL,
     }).$extends(withAccelerate());
 
-    const payload = await c.req.json(); 
-    console.log(payload)
-    const parsedPayload = AddBookSchema.safeParse(payload); 
-    if (!parsedPayload.success){
+    const payload = await c.req.json();
+    console.log(payload);
+    const parsedPayload = AddBookSchema.safeParse(payload);
+    if (!parsedPayload.success) {
         return c.json({
-            message: "Wrong inputs"
-        })
+            message: 'Wrong inputs',
+        });
     }
 
     try {
         const res = await prisma.libraryBooks.create({
             data: {
-                bookNo: payload.bookNo, 
-                bookName: payload.bookName
-            }
-        })
+                bookNo: payload.bookNo,
+                bookName: payload.bookName,
+            },
+        });
 
         return c.json({
-            message: "Book added successfully"
-        })
-        
+            message: 'Book added successfully',
+        });
     } catch (error) {
         console.error(error);
         return c.json(
@@ -260,7 +260,5 @@ adminRouter.post('/addBook', async (c) => {
         await prisma.$disconnect();
     }
 });
-
-
 
 export default adminRouter;
