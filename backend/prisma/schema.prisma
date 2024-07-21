@@ -16,7 +16,6 @@ model Student {
     roll_no       Int
     cgpa          Float
     class         Int 
-    missed        Int      @default(0)
     fees          Fees[]
     marks         Marks[]
     libraryBooks  LibraryStd[]
