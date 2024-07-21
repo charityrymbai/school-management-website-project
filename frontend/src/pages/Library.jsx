@@ -1,7 +1,5 @@
 const Library = () => {
-    return <div>
-        Hello there from Library page
-    </div>
-}
+    return <div>Hello there from Library page</div>;
+};
 
-export default Library
+export default Library;

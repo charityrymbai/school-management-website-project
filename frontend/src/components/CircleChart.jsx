@@ -1,10 +1,9 @@
 import React from 'react';
 import ReactECharts from 'echarts-for-react';
 
-const CircleChart = ({ValueArr}) => {
-
-    let height, width; 
-    height = width = 100
+const CircleChart = ({ ValueArr }) => {
+    let height, width;
+    height = width = 100;
 
     const option = {
         series: [
@@ -15,14 +14,19 @@ const CircleChart = ({ValueArr}) => {
                     show: false,
                 },
                 tooltip: {
-                    show: false, 
+                    show: false,
                 },
                 data: ValueArr,
             },
         ],
     };
 
-    return <ReactECharts option={option} style={{ height: `${height}px`, width: `${width}px` }} />;
+    return (
+        <ReactECharts
+            option={option}
+            style={{ height: `${height}px`, width: `${width}px` }}
+        />
+    );
 };
 
 export default CircleChart;

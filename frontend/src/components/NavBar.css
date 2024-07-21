@@ -10,7 +10,9 @@
     width: 0;
     height: 3px;
     background: #990011;
-    transition: width 0.3s ease, left 0.3s ease;
+    transition:
+        width 0.3s ease,
+        left 0.3s ease;
 }
 
 .nav-item:hover::after {

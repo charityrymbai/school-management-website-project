@@ -1,9 +1,9 @@
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from 'react-router-dom';
 
-export const useBaseNavigate = (basePath)=>{
+export const useBaseNavigate = (basePath) => {
     const navigate = useNavigate();
 
-    return (path)=>{
-        navigate(`${basePath}/${path}`)
-    }
-}
+    return (path) => {
+        navigate(`${basePath}/${path}`);
+    };
+};

@@ -1,7 +1,5 @@
 const Fees = () => {
-    return <div>
-        Hello there from Fees page
-    </div>
-}
+    return <div>Hello there from Fees page</div>;
+};
 
-export default Fees
+export default Fees;

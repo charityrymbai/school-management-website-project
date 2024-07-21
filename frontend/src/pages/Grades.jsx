@@ -1,7 +1,5 @@
 const Grades = () => {
-    return <div>
-        Hello there from Grades page
-    </div>
-}
+    return <div>Hello there from Grades page</div>;
+};
 
-export default Grades
+export default Grades;

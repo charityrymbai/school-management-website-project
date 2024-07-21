@@ -1,12 +1,14 @@
+import QuickLinks from '../components/QuickLinks';
+import Announcements from '../components/Announcements.jsx';
+import Slideshow from '../components/Slideshow';
+import MainContentWrappper from '../Wrappers/MainContentWrapper';
+import { CardWrapper1 } from '../Wrappers/CardWrapper';
+import {
+    h1Style,
+    pStyle,
+} from '../responsive-styles-for-elements/tailwind-styles-exports';
 
-import QuickLinks from "../components/QuickLinks";
-import Announcements from "../components/Announcements.jsx";
-import Slideshow from "../components/Slideshow";
-import MainContentWrappper from "../Wrappers/MainContentWrapper";
-import { CardWrapper1 } from "../Wrappers/CardWrapper";
-import { h1Style, pStyle } from "../responsive-styles-for-elements/tailwind-styles-exports"
-
-const Home = ()=>{
+const Home = () => {
     return (
         <div className="w-full">
             <MainContentWrappper>
@@ -20,27 +22,57 @@ const Home = ()=>{
                     {/* MainSection */}
                     <div className="text-poppins col-span-3">
                         <CardWrapper1>
-                        <div className="sm:p-10">
-                            <h1 className={h1Style}>Welcome to Some Random Higher Secondary School, RandomPlace!</h1>
-                            <p className={pStyle}>
-                            We are delighted to welcome you to the official website of Some Random Higher Secondary School, located in the vibrant community of RandomPlace. Our institution is committed to providing an enriching educational experience that prepares students for a successful future.<br/>
-
-                            At Some Random Higher Secondary School, we believe in the power of education to transform lives. Our dedicated faculty and staff work tirelessly to create a nurturing and stimulating environment where every student can thrive. Whether it's through our rigorous academic programs, diverse extracurricular activities, or our emphasis on character development, we strive to foster a love of learning and a spirit of curiosity in all our students.<br/>
-
-                            Explore our website to learn more about our school’s mission, values, and the exciting opportunities we offer. From detailed information about our curriculum and state-of-the-art facilities to the latest news and events, we hope this site provides you with a comprehensive view of life at Some Random Higher Secondary School.<br/>
-
-                            Thank you for visiting, and we look forward to partnering with you in your child’s educational journey.<br/>
-
-                            Warm regards,<br/>
-                            The Some Random Higher Secondary School Team<br/>
-                            </p>
-                        </div>
+                            <div className="sm:p-10">
+                                <h1 className={h1Style}>
+                                    Welcome to Some Random Higher Secondary
+                                    School, RandomPlace!
+                                </h1>
+                                <p className={pStyle}>
+                                    We are delighted to welcome you to the
+                                    official website of Some Random Higher
+                                    Secondary School, located in the vibrant
+                                    community of RandomPlace. Our institution is
+                                    committed to providing an enriching
+                                    educational experience that prepares
+                                    students for a successful future.
+                                    <br />
+                                    At Some Random Higher Secondary School, we
+                                    believe in the power of education to
+                                    transform lives. Our dedicated faculty and
+                                    staff work tirelessly to create a nurturing
+                                    and stimulating environment where every
+                                    student can thrive. Whether it's through our
+                                    rigorous academic programs, diverse
+                                    extracurricular activities, or our emphasis
+                                    on character development, we strive to
+                                    foster a love of learning and a spirit of
+                                    curiosity in all our students.
+                                    <br />
+                                    Explore our website to learn more about our
+                                    school’s mission, values, and the exciting
+                                    opportunities we offer. From detailed
+                                    information about our curriculum and
+                                    state-of-the-art facilities to the latest
+                                    news and events, we hope this site provides
+                                    you with a comprehensive view of life at
+                                    Some Random Higher Secondary School.
+                                    <br />
+                                    Thank you for visiting, and we look forward
+                                    to partnering with you in your child’s
+                                    educational journey.
+                                    <br />
+                                    Warm regards,
+                                    <br />
+                                    The Some Random Higher Secondary School Team
+                                    <br />
+                                </p>
+                            </div>
                         </CardWrapper1>
                     </div>
                 </div>
             </MainContentWrappper>
         </div>
-    )
-}
+    );
+};
 
-export default Home
+export default Home;
