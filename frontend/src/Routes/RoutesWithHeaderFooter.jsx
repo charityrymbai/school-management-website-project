@@ -1,12 +1,14 @@
+import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Home from '../pages/Home';
-import About from '../pages/About';
 import Login from '../pages/Login';
-import Contact from '../pages/Contact';
 import LoginPortal from '../pages/LoginPortal';
+
+const Contact = React.lazy(() => import('../pages/Contact'));
+const About = React.lazy(() => import('../pages/About'));
 
 const RoutesWithHeaderFooter = () => {
     return (
