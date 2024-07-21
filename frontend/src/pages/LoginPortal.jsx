@@ -53,14 +53,14 @@ const LoginPortal = () => {
                         <div className="grid grid-cols-1">
                             <Heading1>Welcome {params.user}s!!</Heading1>
                             <input
-                                className="p-2 h-10 border-2 border-gray-400 rounded-md my-5"
+                                className="w-full p-2 h-10 border-2 border-gray-400 rounded-md my-5"
                                 placeholder={`${params.user} ID No.`}
                                 onChange={(e) => {
                                     setStd_id(e.target.value);
                                 }}
                             ></input>
                             <input
-                                className="p-2 h-10 border-2 border-gray-400 rounded-md"
+                                className="w-full p-2 h-10 border-2 border-gray-400 rounded-md"
                                 placeholder="Date of Birth"
                                 type="date"
                                 min="1960-01-01"
