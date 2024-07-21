@@ -19,10 +19,10 @@ export default function Sidebar({ children }) {
 
   useEffect(()=>{
     fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/api/v1/student/getStudentDetails`,{
-        method: "POST", 
-        body: JSON.stringify({
-            token
-        })
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
     })
     .then((res)=>{
         return res.json();

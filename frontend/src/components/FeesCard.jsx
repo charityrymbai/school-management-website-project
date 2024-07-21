@@ -1,15 +1,18 @@
 import { CardWrapper3 } from "../Wrappers/CardWrapper"
 
-const FeesCard = () => {
-    const lastPaymentDate = new Date(2024, 0, 12)
-    const nextPaymentDate = new Date(2024, 5, 12)
+const FeesCard = ({lastPaymentDate}) => {
+    
     return (
         <div>
             <CardWrapper3 heading="Fees">
-            <ul className="list-disc">
-                <li>Last Payment Date: {lastPaymentDate.toLocaleDateString()}</li>
-                <li>Next Payment Date: {nextPaymentDate.toLocaleDateString()}</li>
-            </ul>
+            <div>
+                {
+                    (lastPaymentDate)? 
+                        (`Last Payment Date: ${new Date(lastPaymentDate).toLocaleDateString("en-GB", {day:'2-digit', month:'2-digit', year:'numeric'})}`)
+                    : 
+                        "No Payment Made"
+                }
+            </div>
             </CardWrapper3>
         </div>
     )

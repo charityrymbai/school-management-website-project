@@ -9,6 +9,9 @@ import { useEffect, useState } from "react"
 const Overview = () => {
 
     let [student, setStudent] = useState({})
+    let [lastPaymentDate, setLastPaymentDate] = useState("")
+    let [libraryBooks, setLibraryBooks] = useState([])
+    let [attendance, setattendance] = useState([])
 
     const navigate = useNavigate();
 
@@ -19,16 +22,26 @@ const Overview = () => {
  
     useEffect(()=>{
         fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/api/v1/student/getStudentDetails`,{
-            method: "POST", 
-            body: JSON.stringify({
-                token
-            })
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
         })
         .then((res)=>{
             return res.json();
         })
         .then((data)=>{
             setStudent(data)
+            if (data.libraryBooks.length>0){
+                setLibraryBooks(data.libraryBooks)
+            }
+            if (data.fees.length>0){
+                const lastIndex = data.fees.length - 1
+                setLastPaymentDate(data.fees[lastIndex].paid_on)
+            }
+            if (data.attendance.length>0){
+                setattendance(data.attendance)
+            }
         })
     },[])
     return (
@@ -45,10 +58,10 @@ const Overview = () => {
                 </div>
             </div>
             <div className="p-5 bg-gray-50 grid grid-cols-1 sm:grid-cols-2 gap-5">
-                <Link to={"../attendance"}><AttendanceCard attended={56} missed={student.missed}/></Link>
+                <Link to={"../attendance"}><AttendanceCard attendance={attendance}/></Link>
                 <Link to={"../grades"}><GradesCard gpa={student.cgpa}/></Link>
-                <Link to={"../library"}><LibraryCard /></Link>
-                <Link to={"../fees"}><FeesCard /></Link>
+                <Link to={"../library"}><LibraryCard content={libraryBooks}/></Link>
+                <Link to={"../fees"}><FeesCard lastPaymentDate={lastPaymentDate}/></Link>
             </div>
         </div>
     )
