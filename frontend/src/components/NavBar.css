@@ -1,5 +1,7 @@
 .nav-item {
     position: relative;
+    font-size: 1rem;
+    line-height: 1.5rem; 
 }
 
 .nav-item::after {
@@ -18,4 +20,11 @@
 .nav-item:hover::after {
     width: 100%;
     left: 0;
+}
+
+@media (min-width: 640px) {
+    .nav-item {
+        font-size: 1.25rem; /* 20px */
+        line-height: 1.75rem;
+    }
 }

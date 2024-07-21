@@ -4,7 +4,7 @@ const NavBar = () => {
     return (
         <div>
             <nav className="flex justify-around h-12 bg-white">
-                <ul className="w-60% md:w-[50%] flex justify-around py-2 font-bold text-lg ">
+                <ul className="w-full md:w-[50%] flex justify-around py-2 font-bold text-lg ">
                     <li className="nav-item">
                         <Link
                             to="/home"
