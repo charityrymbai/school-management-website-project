@@ -34,7 +34,7 @@ export const CardWrapper3 = (props) => {
 export const CardWrapper4 = (props) => {
     return (
         <div
-            className={`bg-white w-full h-full border-2 rounded-3xl p-5 my-3 shadow-md ${props.custom}`}
+            className={`bg-white w-full h-full border-2 rounded-3xl p-5 my-3 shadow-md overflow-auto ${props.custom}`}
         >
             {props.children}
         </div>
