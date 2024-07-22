@@ -125,4 +125,31 @@ studentRouter.post('/payFees', studAuthMiddleware, async (c) => {
     }
 });
 
+
+studentRouter.get('/getFeeDetails', studAuthMiddleware, async (c) => {
+    const prisma = new PrismaClient({
+        datasourceUrl: c.env.DATABASE_URL,
+    }).$extends(withAccelerate());
+
+    try {
+        const feeDetails = await prisma.fees.findMany({
+            where: {
+                std_id: c.student.std_id
+            }
+        });
+
+        return c.json(feeDetails, 200);
+    } catch (error) {
+        console.error(error);
+        return c.json(
+            {
+                message: 'Error getting details',
+            },
+            500
+        );
+    } finally {
+        await prisma.$disconnect();
+    }
+});
+
 export default studentRouter;
