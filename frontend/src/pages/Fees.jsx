@@ -2,24 +2,16 @@ import { useEffect, useState } from "react";
 import TopBar2 from "../components/TopBar2";
 import { CardWrapper4 } from "../Wrappers/CardWrapper";
 import { h3Style, pStyle } from "../responsive-styles-for-elements/tailwind-styles-exports";
+import useScreenWidth from "../utils/useScreenWidth";
 
 const Fees = () => {
     const [fees, setFees] = useState([])
-    const [screenWidth, setScreenWidth] = useState(window.innerWidth)
-
+    const screenWidth = useScreenWidth()
+    
     const token = localStorage.getItem('token');
     if (!token) {
         navigate('/login/Student');
     }
-
-    useEffect(()=>{
-        function getWidth(){
-            const width = window.innerWidth
-            setScreenWidth(width)
-        }
-        addEventListener('resize', getWidth)
-        return ()=> removeEventListener('resize', getWidth)
-    },[])
 
     useEffect(()=>{
         fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/api/v1/student/getFeeDetails`,{
