@@ -50,20 +50,31 @@ const Fees = () => {
                         </thead>
                         <tbody className={pStyle}>
                             {
-                                fees.map((row, index)=>{
-                                    return (
-                                        <tr key={index} className="h-16 text-center border-b-2">
-                                            <td>{row.fees_reference_id}</td>
-                                            <td>{row.installment_no}</td>
-                                            <td>{row.amount}</td>
-                                            <td>{new Date(row.paid_on).toLocaleDateString("en-GB", {
-                                                day: '2-digit',
-                                                month: 'long',
-                                                year: 'numeric'
-                                            })}</td>
-                                        </tr>
-                                    )
-                                })
+                                fees.length>0 ?
+                                (
+                                    fees.map((row, index)=>{
+                                        return (
+                                            <tr key={index} className="h-16 text-center border-b-2">
+                                                <td>{row.fees_reference_id}</td>
+                                                <td>{row.installment_no}</td>
+                                                <td>{row.amount}</td>
+                                                <td>{new Date(row.paid_on).toLocaleDateString("en-GB", {
+                                                    day: '2-digit',
+                                                    month: 'long',
+                                                    year: 'numeric'
+                                                })}</td>
+                                            </tr>
+                                        )
+                                    })
+                                )
+                                :
+                                (
+                                    <tr>
+                                        <td colSpan="4" className="h-16 text-center">
+                                            No Fees paid so far
+                                        </td>
+                                    </tr>
+                                )
                             }
                         </tbody>
                     </table>
