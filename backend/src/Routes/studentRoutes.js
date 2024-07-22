@@ -152,4 +152,34 @@ studentRouter.get('/getFeeDetails', studAuthMiddleware, async (c) => {
     }
 });
 
+
+studentRouter.get('/getLibraryRecords', studAuthMiddleware, async (c) => {
+    const prisma = new PrismaClient({
+        datasourceUrl: c.env.DATABASE_URL,
+    }).$extends(withAccelerate());
+
+    try {
+        const libraryRecords = await prisma.libraryStd.findMany({
+            where: {
+                std_id: c.student.std_id
+            },
+            include: {
+                bookDetail: true,
+            }
+        });
+
+        return c.json(libraryRecords, 200);
+    } catch (error) {
+        console.error(error);
+        return c.json(
+            {
+                message: 'Error getting details',
+            },
+            500
+        );
+    } finally {
+        await prisma.$disconnect();
+    }
+});
+
 export default studentRouter;
