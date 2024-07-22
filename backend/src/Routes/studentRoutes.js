@@ -125,7 +125,6 @@ studentRouter.post('/payFees', studAuthMiddleware, async (c) => {
     }
 });
 
-
 studentRouter.get('/getFeeDetails', studAuthMiddleware, async (c) => {
     const prisma = new PrismaClient({
         datasourceUrl: c.env.DATABASE_URL,
@@ -134,8 +133,8 @@ studentRouter.get('/getFeeDetails', studAuthMiddleware, async (c) => {
     try {
         const feeDetails = await prisma.fees.findMany({
             where: {
-                std_id: c.student.std_id
-            }
+                std_id: c.student.std_id,
+            },
         });
 
         return c.json(feeDetails, 200);
@@ -152,7 +151,6 @@ studentRouter.get('/getFeeDetails', studAuthMiddleware, async (c) => {
     }
 });
 
-
 studentRouter.get('/getLibraryRecords', studAuthMiddleware, async (c) => {
     const prisma = new PrismaClient({
         datasourceUrl: c.env.DATABASE_URL,
@@ -161,11 +159,11 @@ studentRouter.get('/getLibraryRecords', studAuthMiddleware, async (c) => {
     try {
         const libraryRecords = await prisma.libraryStd.findMany({
             where: {
-                std_id: c.student.std_id
+                std_id: c.student.std_id,
             },
             include: {
                 bookDetail: true,
-            }
+            },
         });
 
         return c.json(libraryRecords, 200);
