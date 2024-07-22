@@ -46,17 +46,16 @@ const Overview = () => {
                 if (data.attendance.length > 0) {
                     setattendance(data.attendance);
                 }
-                setLoading(false)
+                setLoading(false);
             });
     }, []);
     return (
         <div className="w-full">
-            {(loading)? 
-                (<Loader />)
-            :
-            (
+            {loading ? (
+                <Loader />
+            ) : (
                 <div>
-                    <TopBar firstName={student.firstName}/>
+                    <TopBar firstName={student.firstName} />
                     <div className="p-5 bg-gray-50 grid grid-cols-1 sm:grid-cols-2 gap-5">
                         <Link to={'../attendance'}>
                             <AttendanceCard attendance={attendance} />

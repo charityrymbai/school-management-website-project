@@ -1,5 +1,11 @@
+import TopBar2 from '../components/TopBar2';
+
 const Attendance = () => {
-    return <div>Hello there from Attendance page</div>;
+    return (
+        <div className="w-full">
+            <TopBar2 Heading={'Attendance'} />
+        </div>
+    );
 };
 
 export default Attendance;

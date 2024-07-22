@@ -4,7 +4,9 @@ import { Routes, Route } from 'react-router-dom';
 import RoutesWithHeaderFooter from './Routes/RoutesWithHeaderFooter';
 import Loader from './components/Loader';
 
-const RoutesWithoutHeaderFooter = React.lazy(() => import('./Routes/RoutesWithoutHeaderFooter'));
+const RoutesWithoutHeaderFooter = React.lazy(
+    () => import('./Routes/RoutesWithoutHeaderFooter'),
+);
 
 function App() {
     return (
