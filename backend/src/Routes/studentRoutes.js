@@ -180,4 +180,34 @@ studentRouter.get('/getLibraryRecords', studAuthMiddleware, async (c) => {
     }
 });
 
+
+studentRouter.get('/getAttendance', studAuthMiddleware, async (c) => {
+    const prisma = new PrismaClient({
+        datasourceUrl: c.env.DATABASE_URL,
+    }).$extends(withAccelerate());
+
+    try {
+        const attendanceRecords = await prisma.attendance.findMany({
+            where: {
+                std_id: c.student.std_id,
+            },
+            include: {
+                subject: true
+            }
+        });
+
+        return c.json(attendanceRecords, 200);
+    } catch (error) {
+        console.error(error);
+        return c.json(
+            {
+                message: 'Error getting details',
+            },
+            500
+        );
+    } finally {
+        await prisma.$disconnect();
+    }
+});
+
 export default studentRouter;
