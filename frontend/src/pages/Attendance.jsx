@@ -61,12 +61,16 @@ const Attendance = () => {
                                                 ? 'Subject Id'
                                                 : 'S. Id'}
                                         </th>
-                                        <th>{screenWidth > 1020
+                                        <th>
+                                            {screenWidth > 1020
                                                 ? 'Subject Name'
-                                                : 'S. Name'}</th>
-                                        <th>{screenWidth > 1020
+                                                : 'S. Name'}
+                                        </th>
+                                        <th>
+                                            {screenWidth > 1020
                                                 ? 'Teacher Name'
-                                                : 'T. Name'}</th>
+                                                : 'T. Name'}
+                                        </th>
                                         <th>Date</th>
                                     </tr>
                                 </thead>
