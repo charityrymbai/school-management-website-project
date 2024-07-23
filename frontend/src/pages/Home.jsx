@@ -13,14 +13,14 @@ const Home = () => {
         <div className="w-full">
             <MainContentWrappper>
                 <Slideshow />
-                <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
+                <div className="grid grid-cols-1 lg:grid-cols-4">
                     {/* Left Section */}
-                    <div className="h-fit grid grid-cols-1 gap-3">
+                    <div className="content-start p-3 grid grid-col-1 sm:grid-cols-2 lg:grid-cols-1 sm:gap-4">
                         <QuickLinks />
                         <Announcements />
                     </div>
                     {/* MainSection */}
-                    <div className="text-poppins col-span-3">
+                    <div className="text-poppins col-span-3 p-3">
                         <CardWrapper1>
                             <div className="sm:p-10">
                                 <h1 className={h1Style}>

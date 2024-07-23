@@ -12,7 +12,7 @@ const About = () => {
     return (
         <MainContentWrappper>
             <CardWrapper1>
-                <div className="font-poppins sm:p-24">
+                <div className="font-poppins">
                     <h1 className={h1Style}>About Our School</h1>
                     <Line thick="2" />
                     <p className={pStyle}>

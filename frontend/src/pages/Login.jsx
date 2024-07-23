@@ -6,8 +6,8 @@ import { studentLogo, teacherLogo } from '../../public/images/photosExports';
 
 const Login = () => {
     return (
-        <div className="flex justify-center">
-            <MainContentWrappper>
+        <MainContentWrappper>
+            <div className="flex justify-center">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-7">
                     <Link to={`${'Teacher'}`}>
                         <ImageLink imageSrc={teacherLogo}>
@@ -20,8 +20,8 @@ const Login = () => {
                         </ImageLink>
                     </Link>
                 </div>
-            </MainContentWrappper>
-        </div>
+            </div>
+        </MainContentWrappper>
     );
 };
 

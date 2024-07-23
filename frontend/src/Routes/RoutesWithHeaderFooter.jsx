@@ -12,7 +12,7 @@ const About = React.lazy(() => import('../pages/About'));
 
 const RoutesWithHeaderFooter = () => {
     return (
-        <div className="bg-blue-100">
+        <div>
             <Header />
             <Routes>
                 <Route path="" element={<Navigate to="home" />} />

@@ -6,7 +6,7 @@ import {
 export const CardWrapper1 = (props) => {
     return (
         <div
-            className={`w-full grid place-content-center my-3 p-5 bg-white rounded-3xl shadow-xl border-2 ${props.custom}`}
+            className={`w-full h-full grid place-content-center p-5 sm:p-10 bg-white rounded-3xl shadow-xl border-2 ${props.custom}`}
         >
             {props.children}
         </div>

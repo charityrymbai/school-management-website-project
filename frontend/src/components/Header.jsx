@@ -1,13 +1,10 @@
 import { useState, useEffect } from 'react';
+import useScreenWidth from '../utils/useScreenWidth';
 import NavBar from './NavBar';
 
 function Header() {
     const [scrollY, setScrollY] = useState(0);
-    const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-
-    useEffect(() => {
-        setScreenWidth(window.innerWidth);
-    }, [window.innerWidth]);
+    const screenWidth = useScreenWidth();
 
     useEffect(() => {
         const handleScroll = () => {

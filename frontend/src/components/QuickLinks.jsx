@@ -9,7 +9,7 @@ import { CardWrapper1 } from '../Wrappers/CardWrapper';
 
 const QuickLinks = () => {
     return (
-        <div>
+        <div className="pb-3 sm:pb-0">
             <CardWrapper1>
                 <div className="text-center text-inter">
                     <h1 className={cardHeading}>Quick Links</h1>
@@ -17,8 +17,7 @@ const QuickLinks = () => {
                     <div>
                         <div
                             className={
-                                'w-full h-fit grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-2 ' +
-                                cardNormal
+                                'w-full h-fit grid grid-cols-1 ' + cardNormal
                             }
                         >
                             <ul className="list-disc list-inside">
