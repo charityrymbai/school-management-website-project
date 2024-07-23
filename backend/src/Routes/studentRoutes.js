@@ -180,7 +180,6 @@ studentRouter.get('/getLibraryRecords', studAuthMiddleware, async (c) => {
     }
 });
 
-
 studentRouter.get('/getAttendance', studAuthMiddleware, async (c) => {
     const prisma = new PrismaClient({
         datasourceUrl: c.env.DATABASE_URL,
@@ -192,8 +191,8 @@ studentRouter.get('/getAttendance', studAuthMiddleware, async (c) => {
                 std_id: c.student.std_id,
             },
             include: {
-                subject: true
-            }
+                subject: true,
+            },
         });
 
         return c.json(attendanceRecords, 200);
