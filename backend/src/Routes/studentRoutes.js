@@ -4,7 +4,7 @@ import { withAccelerate } from '@prisma/extension-accelerate';
 import { sign } from 'hono/jwt';
 
 import studAuthMiddleware from '../middlewares/studAuthMiddleware';
-import { StudentSiginSchema } from '../ZodSchemas/StudentSchemas';
+import { SiginSchema } from '../ZodSchemas/CommonSchemas';
 
 const studentRouter = new Hono();
 
@@ -15,7 +15,7 @@ studentRouter.post('/signin', async (c) => {
 
     const body = await c.req.json();
 
-    const parsed = StudentSiginSchema.safeParse(body);
+    const parsed = SiginSchema.safeParse(body);
 
     if (!parsed.success) {
         return c.json(
@@ -26,9 +26,14 @@ studentRouter.post('/signin', async (c) => {
         );
     }
 
+    const loginInput = {
+        std_id: body.id, 
+        date_of_birth: body.date_of_birth,
+    }
+
     try {
         const student = await prisma.student.findFirst({
-            where: body,
+            where: loginInput,
         });
 
         if (student === null) {
@@ -42,7 +47,7 @@ studentRouter.post('/signin', async (c) => {
 
         const secret = c.env.JWT_SECRET;
 
-        const token = await sign(body, secret);
+        const token = await sign(loginInput, secret);
 
         return c.json(
             {
