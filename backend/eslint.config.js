@@ -1,24 +1,31 @@
 import globals from 'globals';
-import pluginJs from '@eslint/js';
+import { default as eslintJs } from '@eslint/js';
 import pluginPrettier from 'eslint-plugin-prettier';
 import configPrettier from 'eslint-config-prettier';
 
-export default [
-    { files: ['**/*.{js,mjs,cjs}'] },
-    {
-        languageOptions: {
-            parserOptions: { ecmaFeatures: { jsx: true } },
-            globals: globals.browser,
+const { eslintRecommended } = eslintJs;
+
+const baseConfig = {
+    languageOptions: {
+        parserOptions: {
+            ecmaVersion: 'latest',
+            sourceType: 'module',
+            ecmaFeatures: { jsx: false },
         },
+        globals: globals.browser,
     },
-    pluginJs.configs.recommended,
-    configPrettier,
-    {
-        plugins: {
-            prettier: pluginPrettier,
-        },
-        rules: {
-            'prettier/prettier': 'error',
-        },
+    plugins: {
+        prettier: pluginPrettier,
     },
-];
+    rules: {
+        'prettier/prettier': 'error',
+        'semi': ['error', 'always'],
+    },
+};
+
+export default {
+    files: ['**/*.{js,mjs,cjs}'],
+    ...baseConfig,
+    ...eslintRecommended,
+    ...configPrettier,
+};
