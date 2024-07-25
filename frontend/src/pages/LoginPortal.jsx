@@ -4,6 +4,7 @@ import MainContentWrappper from '../Wrappers/MainContentWrapper';
 import { CardWrapper1 } from '../Wrappers/CardWrapper';
 import Heading1 from '../components/Heading1';
 import TextLink from '../components/TextLink';
+import Loader from '../components/Loader'
 import { useState } from 'react';
 
 const LoginPortal = () => {
@@ -14,6 +15,7 @@ const LoginPortal = () => {
     const [dateOfBirth, setDateOfBirth] = useState('2000-01-01');
     const [errorMessage, setErrorMessage] = useState('');
     const [password, setPassword] = useState('');
+    const [loading, setLoading] = useState(false)
 
     function showError(error) {
         setErrorMessage(error);
@@ -36,6 +38,7 @@ const LoginPortal = () => {
     }
 
     const onclickHandler = async () => {
+        setLoading(true)
         const res = await fetch(
             `${import.meta.env.VITE_REACT_APP_API_URL}/api/v1/${params.user.toLowerCase()}/signin`,
             {
@@ -43,6 +46,7 @@ const LoginPortal = () => {
                 body: JSON.stringify(requestBody),
             },
         );
+        setLoading(false)
 
         if (!res.ok) {
             showError('Server error. Please try again later');
@@ -59,8 +63,9 @@ const LoginPortal = () => {
     return (
         <div className="flex justify-center">
             <MainContentWrappper>
-                <div>
-                    <CardWrapper1>
+                {loading? (<Loader />):
+                    (<div className='flex justify-center'>
+                    <CardWrapper1 custom={"w-[300px]"}>
                         <div className="grid grid-cols-1">
                             <Heading1>Welcome {params.user}s!!</Heading1>
                             <input
@@ -112,7 +117,7 @@ const LoginPortal = () => {
                             </div>
                         </div>
                     </CardWrapper1>
-                </div>
+                </div>)}
             </MainContentWrappper>
         </div>
     );
