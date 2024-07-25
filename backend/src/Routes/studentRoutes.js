@@ -69,7 +69,7 @@ studentRouter.post('/signin', async (c) => {
     }
 });
 
-studentRouter.get('/getStudentDetails', studAuthMiddleware, async (c) => {
+studentRouter.get('/getDetails', studAuthMiddleware, async (c) => {
     const prisma = new PrismaClient({
         datasourceUrl: c.env.DATABASE_URL,
     }).$extends(withAccelerate());

@@ -3,13 +3,146 @@ import { PrismaClient } from '@prisma/client/edge';
 import { withAccelerate } from '@prisma/extension-accelerate';
 import {
     AddBookSchema,
+    CreateAdminSchema,
     CreateStudentSchema,
     StdLendBookSchema,
     StudentSchema,
     TeachLendBookSchema,
 } from '../ZodSchemas/adminSchemas';
+import { SigninSchema } from '../ZodSchemas/CommonSchemas';
+import adminMiddleware from '../Middlewares/adminMiddleware';
+import { sign } from 'hono/jwt';
 
 const adminRouter = new Hono();
+
+adminRouter.post('/createAdmin', async (c) => {
+    const prisma = new PrismaClient({
+        datasourceUrl: c.env.DATABASE_URL,
+    }).$extends(withAccelerate());
+
+    const body = await c.req.json();
+
+    const parsed = CreateAdminSchema.safeParse(body);
+
+    if (!parsed.success) {
+        return c.json(
+            {
+                message: 'Wrong inputs',
+            },
+            400
+        );
+    }
+
+    try {
+        const res = await prisma.admin.create({
+            data: body,
+        });
+        return c.json(
+            {
+                message: 'Created Admin',
+            },
+            200
+        );
+    } catch (error) {
+        console.error(error);
+        return c.json(
+            {
+                message: 'Error creating student',
+            },
+            500
+        );
+    } finally {
+        await prisma.$disconnect();
+    }
+});
+
+adminRouter.post('/signin', async (c) => {
+    const prisma = new PrismaClient({
+        datasourceUrl: c.env.DATABASE_URL,
+    }).$extends(withAccelerate());
+
+    const body = await c.req.json();
+
+    const parsed = SigninSchema.safeParse(body);
+
+    if (!parsed.success) {
+        return c.json(
+            {
+                message: 'Wrong inputs',
+            },
+            400
+        );
+    }
+
+    const loginInput = {
+        ad_id: body.id, 
+        password: body.password,
+    }
+
+    try {
+        const admin = await prisma.admin.findFirst({
+            where: loginInput,
+        });
+
+        if (admin === null) {
+            return c.json(
+                {
+                    message: "There is no admin with the provided details",
+                },
+                200
+            );
+        }
+
+        const secret = c.env.JWT_SECRET;
+
+        const token = await sign({
+            ad_id: loginInput.ad_id
+        }, secret);
+
+        return c.json(
+            {
+                message: 'Logged in successful',
+                token: token,
+            },
+            200
+        );
+    } catch (error) {
+        console.error(error);
+        return c.json(
+            {
+                message: 'Error logging in',
+            },
+            500
+        );
+    } finally {
+        await prisma.$disconnect();
+    }
+});
+
+adminRouter.get('/getDetails', adminMiddleware, async (c) => {
+    const prisma = new PrismaClient({
+        datasourceUrl: c.env.DATABASE_URL,
+    }).$extends(withAccelerate());
+    try {
+        const adminDetails = await prisma.admin.findUnique({
+            where: {
+                ad_id: c.admin.ad_id,
+            }
+        });
+
+        return c.json(adminDetails, 200);
+    } catch (error) {
+        console.error(error);
+        return c.json(
+            {
+                message: 'Error getting details',
+            },
+            500
+        );
+    } finally {
+        await prisma.$disconnect();
+    }
+});
 
 adminRouter.post('/createStudent', async (c) => {
     const prisma = new PrismaClient({

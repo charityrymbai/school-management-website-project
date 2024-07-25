@@ -10,6 +10,14 @@ export const CreateStudentSchema = zod.object({
     class: zod.number(),
 });
 
+export const CreateAdminSchema = zod.object({
+    firstName: zod.string(),
+    middleName: zod.string().optional(),
+    lastName: zod.string(),
+    date_of_birth: zod.string(),
+    password: zod.string(),
+});
+
 export const StudentSchema = zod.object({
     firstName: zod.string().optional(),
     middleName: zod.string().optional(),

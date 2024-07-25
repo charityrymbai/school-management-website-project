@@ -14,3 +14,8 @@ export const SiginSchema = zod.object({
     id: zod.number(),
     date_of_birth: zod.string(),
 });
+
+export const SigninSchema = zod.object({
+    id: zod.number(), 
+    password: zod.string(),
+})
