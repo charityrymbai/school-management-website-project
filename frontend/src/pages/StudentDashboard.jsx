@@ -1,6 +1,6 @@
 import React from 'react';
-const RoutesWithSidePanel = React.lazy(
-    () => import('../Routes/RoutesWithSidePanel.jsx'),
+const StudentRoutes = React.lazy(
+    () => import('../Routes/StudentRoutes.jsx'),
 );
 
 import { SidebarItem } from '../components/Sidebar.jsx';
@@ -18,32 +18,32 @@ const StudentDashboard = () => {
         <div className="flex">
             <Sidebar>
                 <SidebarItem
-                    goToPage="overview"
+                    goToPage="student/overview"
                     icon={<Layers size={20} />}
                     text="Overview"
                 ></SidebarItem>
                 <SidebarItem
-                    goToPage="Library"
+                    goToPage="student/Library"
                     icon={<BookCopy size={20} />}
                     text="Library"
                 ></SidebarItem>
                 <SidebarItem
-                    goToPage="Grades"
+                    goToPage="student/Grades"
                     icon={<BookOpenCheck size={20} />}
                     text="Grades"
                 ></SidebarItem>
                 <SidebarItem
-                    goToPage="Attendance"
+                    goToPage="student/Attendance"
                     icon={<PersonStanding size={20} />}
                     text="Attendance"
                 ></SidebarItem>
                 <SidebarItem
-                    goToPage="Fees"
+                    goToPage="student/Fees"
                     icon={<Wallet size={20} />}
                     text="Fees"
                 ></SidebarItem>
             </Sidebar>
-            <RoutesWithSidePanel />
+            <StudentRoutes />
         </div>
     );
 };
