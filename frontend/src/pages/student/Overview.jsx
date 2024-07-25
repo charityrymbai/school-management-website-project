@@ -23,7 +23,7 @@ const Overview = () => {
 
     useEffect(() => {
         fetch(
-            `${import.meta.env.VITE_REACT_APP_API_URL}/api/v1/student/getStudentDetails`,
+            `${import.meta.env.VITE_REACT_APP_API_URL}/api/v1/student/getDetails`,
             {
                 method: 'GET',
                 headers: {

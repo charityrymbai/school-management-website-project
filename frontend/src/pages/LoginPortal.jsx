@@ -10,9 +10,10 @@ const LoginPortal = () => {
     const params = useParams();
     const navigate = useNavigate();
 
-    const [std_id, setStd_id] = useState('');
+    const [id, setId] = useState('');
     const [dateOfBirth, setDateOfBirth] = useState('2000-01-01');
     const [errorMessage, setErrorMessage] = useState('');
+    const [password, setPassword] = useState('')
 
     function showError(error) {
         setErrorMessage(error);
@@ -21,15 +22,25 @@ const LoginPortal = () => {
         }, 5000);
     }
 
+    let requestBody; 
+    if(params.user.toLowerCase()==="student"){
+        requestBody = {
+            id: parseInt(id),
+            date_of_birth: new Date(dateOfBirth).toISOString(),
+        }
+    } else {
+        requestBody = {
+            id: parseInt(id),
+            password: password,
+        }
+    }
+
     const onclickHandler = async () => {
         const res = await fetch(
-            `${import.meta.env.VITE_REACT_APP_API_URL}/api/v1/student/signin`,
+            `${import.meta.env.VITE_REACT_APP_API_URL}/api/v1/${params.user.toLowerCase()}/signin`,
             {
                 method: 'POST',
-                body: JSON.stringify({
-                    std_id: parseInt(std_id),
-                    date_of_birth: new Date(dateOfBirth).toISOString(),
-                }),
+                body: JSON.stringify(requestBody),
             },
         );
 
@@ -41,7 +52,7 @@ const LoginPortal = () => {
             showError(data.message);
         } else {
             localStorage.setItem('token', data.token);
-            navigate('/dashboard/student');
+            navigate(`/dashboard/${params.user.toLowerCase()}`);
         }
     };
 
@@ -56,10 +67,11 @@ const LoginPortal = () => {
                                 className="w-full p-2 h-10 border-2 border-gray-400 rounded-md my-5"
                                 placeholder={`${params.user} ID No.`}
                                 onChange={(e) => {
-                                    setStd_id(e.target.value);
+                                    setId(e.target.value);
                                 }}
                             ></input>
-                            <input
+                            {(params.user.toLowerCase()==="student")?
+                                (<><input
                                 className="w-full p-2 h-10 border-2 border-gray-400 rounded-md"
                                 placeholder="Date of Birth"
                                 type="date"
@@ -68,7 +80,20 @@ const LoginPortal = () => {
                                     setDateOfBirth(e.target.value);
                                 }}
                             ></input>
-                            <TextLink href="#">Forgot Password?</TextLink>
+                            <TextLink href="#">Forgot Student ID?</TextLink></>)
+                            :
+                            (
+                                <><input
+                                className="w-full p-2 h-10 border-2 border-gray-400 rounded-md"
+                                placeholder="Password"
+                                type="password"
+                                onChange={(e) => {
+                                    setPassword(e.target.value);
+                                }}
+                            ></input>
+                            <TextLink href="#">Forgot ID or Password?</TextLink></> 
+                            )
+                            }
                             <button
                                 className="bg-indigo-700 hover:bg-indigo-900 text-white 
                             rounded-full py-2"

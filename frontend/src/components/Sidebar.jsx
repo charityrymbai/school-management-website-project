@@ -3,11 +3,12 @@ import { ChevronLast, ChevronFirst, Menu } from 'lucide-react';
 import { useContext, createContext, useState, useEffect } from 'react';
 import { schoolLogo } from '../../public/images/photosExports';
 import { useBaseNavigate } from '../utils/useBaseNavigation.js';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 const SidebarContext = createContext();
 
 export default function Sidebar({ children }) {
+    const params = useParams();
     const [expanded, setExpanded] = useState(true);
     const [showSidebar, setShowSidebar] = useState(false);
     const [loading, setLoading] = useState(true);
@@ -17,12 +18,12 @@ export default function Sidebar({ children }) {
 
     const token = localStorage.getItem('token');
     if (!token) {
-        navigate('/login/Student');
+        navigate(`/login/${params.user.toLowerCase()}`);
     }
 
     useEffect(() => {
         fetch(
-            `${import.meta.env.VITE_REACT_APP_API_URL}/api/v1/student/getStudentDetails`,
+            `${import.meta.env.VITE_REACT_APP_API_URL}/api/v1/${params.user.toLowerCase()}/getDetails`,
             {
                 method: 'GET',
                 headers: {
@@ -92,13 +93,14 @@ export default function Sidebar({ children }) {
                                 >
                                     <div className="leading-4">
                                         <h4 className="font-semibold">{`${student.firstName} ${student.lastName}`}</h4>
-                                        <span className="text-xs text-gray-600">
+                                        {(params.user.toLowerCase()==="student")?
+                                            (<><span className="text-xs text-gray-600">
                                             Class: {student.class}
                                         </span>
                                         <br />
                                         <span className="text-xs text-gray-600">
                                             Roll no: {student.roll_no}
-                                        </span>
+                                        </span></>):(<></>)}
                                     </div>
                                 </div>
                             </div>

@@ -1,7 +1,5 @@
-import React from 'react';
-const StudentRoutes = React.lazy(
-    () => import('../Routes/StudentRoutes.jsx'),
-);
+import React from "react";
+import StudentRoutes from "../Routes/StudentRoutes.jsx"
 
 import { SidebarItem } from '../components/Sidebar.jsx';
 const Sidebar = React.lazy(() => import('../components/Sidebar.jsx'));
@@ -13,9 +11,9 @@ import {
     PersonStanding,
 } from 'lucide-react';
 
-const StudentDashboard = () => {
+const StudentSideBarItems = ()=>{
     return (
-        <div className="flex">
+        <>
             <Sidebar>
                 <SidebarItem
                     goToPage="student/overview"
@@ -23,29 +21,29 @@ const StudentDashboard = () => {
                     text="Overview"
                 ></SidebarItem>
                 <SidebarItem
-                    goToPage="student/Library"
+                    goToPage="student/library"
                     icon={<BookCopy size={20} />}
                     text="Library"
                 ></SidebarItem>
                 <SidebarItem
-                    goToPage="student/Grades"
+                    goToPage="student/grades"
                     icon={<BookOpenCheck size={20} />}
                     text="Grades"
                 ></SidebarItem>
                 <SidebarItem
-                    goToPage="student/Attendance"
+                    goToPage="student/attendance"
                     icon={<PersonStanding size={20} />}
                     text="Attendance"
                 ></SidebarItem>
                 <SidebarItem
-                    goToPage="student/Fees"
+                    goToPage="student/fees"
                     icon={<Wallet size={20} />}
                     text="Fees"
                 ></SidebarItem>
             </Sidebar>
             <StudentRoutes />
-        </div>
-    );
-};
+        </>
+    )
+}
 
-export default StudentDashboard;
+export default StudentSideBarItems
