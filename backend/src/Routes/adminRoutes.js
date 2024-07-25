@@ -75,9 +75,9 @@ adminRouter.post('/signin', async (c) => {
     }
 
     const loginInput = {
-        ad_id: body.id, 
+        ad_id: body.id,
         password: body.password,
-    }
+    };
 
     try {
         const admin = await prisma.admin.findFirst({
@@ -87,7 +87,7 @@ adminRouter.post('/signin', async (c) => {
         if (admin === null) {
             return c.json(
                 {
-                    message: "There is no admin with the provided details",
+                    message: 'There is no admin with the provided details',
                 },
                 200
             );
@@ -95,9 +95,12 @@ adminRouter.post('/signin', async (c) => {
 
         const secret = c.env.JWT_SECRET;
 
-        const token = await sign({
-            ad_id: loginInput.ad_id
-        }, secret);
+        const token = await sign(
+            {
+                ad_id: loginInput.ad_id,
+            },
+            secret
+        );
 
         return c.json(
             {
@@ -127,7 +130,7 @@ adminRouter.get('/getDetails', adminMiddleware, async (c) => {
         const adminDetails = await prisma.admin.findUnique({
             where: {
                 ad_id: c.admin.ad_id,
-            }
+            },
         });
 
         return c.json(adminDetails, 200);

@@ -19,7 +19,7 @@ const baseConfig = {
     },
     rules: {
         'prettier/prettier': 'error',
-        'semi': ['error', 'always'],
+        semi: ['error', 'always'],
     },
 };
 

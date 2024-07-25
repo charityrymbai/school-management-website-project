@@ -12,10 +12,10 @@ export const LoginSchema = zod.object({
 
 export const SiginSchema = zod.object({
     id: zod.number(),
-    date_of_birth: zod.string(),
+    date_of_birth: dateSchema,
 });
 
 export const SigninSchema = zod.object({
-    id: zod.number(), 
+    id: zod.number(),
     password: zod.string(),
-})
+});

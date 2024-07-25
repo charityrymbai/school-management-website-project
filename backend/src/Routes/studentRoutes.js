@@ -27,9 +27,9 @@ studentRouter.post('/signin', async (c) => {
     }
 
     const loginInput = {
-        std_id: body.id, 
+        std_id: body.id,
         date_of_birth: body.date_of_birth,
-    }
+    };
 
     try {
         const student = await prisma.student.findFirst({
