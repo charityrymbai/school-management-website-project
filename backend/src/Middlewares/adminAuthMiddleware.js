@@ -1,6 +1,6 @@
 import { verify } from 'hono/jwt';
 
-const adminMiddleware = async (c, next) => {
+const adminAuthMiddleware = async (c, next) => {
     try {
         const authorization = await c.req.header('Authorization');
         const token = authorization.split(' ')[1];
@@ -16,4 +16,4 @@ const adminMiddleware = async (c, next) => {
     }
 };
 
-export default adminMiddleware;
+export default adminAuthMiddleware;

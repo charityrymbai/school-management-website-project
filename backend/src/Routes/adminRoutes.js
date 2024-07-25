@@ -5,13 +5,14 @@ import {
     AddBookSchema,
     CreateAdminSchema,
     CreateStudentSchema,
+    CreateTeacherSchema,
     StdLendBookSchema,
     StudentSchema,
     TeachLendBookSchema,
 } from '../ZodSchemas/adminSchemas';
 import { SigninSchema } from '../ZodSchemas/CommonSchemas';
-import adminMiddleware from '../Middlewares/adminMiddleware';
 import { sign } from 'hono/jwt';
+import adminAuthMiddleware from '../Middlewares/adminAuthMiddleware';
 
 const adminRouter = new Hono();
 
@@ -122,7 +123,7 @@ adminRouter.post('/signin', async (c) => {
     }
 });
 
-adminRouter.get('/getDetails', adminMiddleware, async (c) => {
+adminRouter.get('/getDetails', adminAuthMiddleware, async (c) => {
     const prisma = new PrismaClient({
         datasourceUrl: c.env.DATABASE_URL,
     }).$extends(withAccelerate());
@@ -180,6 +181,47 @@ adminRouter.post('/createStudent', async (c) => {
         return c.json(
             {
                 message: 'Error creating student',
+            },
+            500
+        );
+    } finally {
+        await prisma.$disconnect();
+    }
+});
+
+adminRouter.post('/createTeacher', async (c) => {
+    const prisma = new PrismaClient({
+        datasourceUrl: c.env.DATABASE_URL,
+    }).$extends(withAccelerate());
+
+    const body = await c.req.json();
+
+    const parsed = CreateTeacherSchema.safeParse(body);
+
+    if (!parsed.success) {
+        return c.json(
+            {
+                message: 'Wrong inputs',
+            },
+            400
+        );
+    }
+
+    try {
+        const res = await prisma.teacher.create({
+            data: body,
+        });
+        return c.json(
+            {
+                message: 'Created Teacher',
+            },
+            200
+        );
+    } catch (error) {
+        console.error(error);
+        return c.json(
+            {
+                message: 'Error creating Teacher',
             },
             500
         );
