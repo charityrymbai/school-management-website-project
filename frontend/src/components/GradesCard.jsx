@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { CardWrapper3 } from '../Wrappers/CardWrapper';
 
 const GradesCard = ({ gpa }) => {
@@ -8,6 +9,10 @@ const GradesCard = ({ gpa }) => {
             </div>
         </CardWrapper3>
     );
+};
+
+GradesCard.propTypes = {
+    gpa: PropTypes.number.isRequired,
 };
 
 export default GradesCard;

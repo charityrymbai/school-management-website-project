@@ -1,8 +1,5 @@
-import { CircleUserRound } from 'lucide-react';
-import {
-    h1Style,
-    pStyle,
-} from '../responsive-styles-for-elements/tailwind-styles-exports';
+import PropTypes from 'prop-types';
+import { h1Style } from '../responsive-styles-for-elements/tailwind-styles-exports';
 
 const TopBar2 = ({ Heading }) => {
     return (
@@ -12,6 +9,10 @@ const TopBar2 = ({ Heading }) => {
             </div>
         </div>
     );
+};
+
+TopBar2.propTypes = {
+    Heading: PropTypes.string.isRequired,
 };
 
 export default TopBar2;

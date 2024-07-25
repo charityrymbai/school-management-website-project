@@ -7,11 +7,13 @@ import {
 } from '../responsive-styles-for-elements/tailwind-styles-exports';
 import useScreenWidth from '../utils/useScreenWidth';
 import Loader from '../components/Loader';
+import { useNavigate } from 'react-router-dom';
 
 const Fees = () => {
     const [fees, setFees] = useState([]);
     const screenWidth = useScreenWidth();
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
 
     const token = localStorage.getItem('token');
     if (!token) {
@@ -34,7 +36,7 @@ const Fees = () => {
                 setFees(data);
                 setLoading(false);
             });
-    }, []);
+    }, [token]);
     return (
         <div className="w-full">
             {loading ? (

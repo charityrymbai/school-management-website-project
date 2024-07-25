@@ -1,7 +1,7 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 import ReactECharts from 'echarts-for-react';
 
-const CircleChart = ({ ValueArr }) => {
+const CircleChart = ({ valueArr }) => {
     let height, width;
     height = width = 100;
 
@@ -16,7 +16,7 @@ const CircleChart = ({ ValueArr }) => {
                 tooltip: {
                     show: false,
                 },
-                data: ValueArr,
+                data: valueArr,
             },
         ],
     };
@@ -27,6 +27,10 @@ const CircleChart = ({ ValueArr }) => {
             style={{ height: `${height}px`, width: `${width}px` }}
         />
     );
+};
+
+CircleChart.propTypes = {
+    valueArr: PropTypes.array.isRequired,
 };
 
 export default CircleChart;

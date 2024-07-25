@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { CardWrapper3 } from '../Wrappers/CardWrapper';
 
 const FeesCard = ({ lastPaymentDate }) => {
@@ -12,6 +13,10 @@ const FeesCard = ({ lastPaymentDate }) => {
             </CardWrapper3>
         </div>
     );
+};
+
+FeesCard.propTypes = {
+    lastPaymentDate: PropTypes.string.isRequired,
 };
 
 export default FeesCard;

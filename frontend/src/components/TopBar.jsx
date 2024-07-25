@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { CircleUserRound } from 'lucide-react';
 import {
     h1Style,
@@ -16,6 +17,10 @@ const TopBar = ({ firstName }) => {
             </div>
         </div>
     );
+};
+
+TopBar.propTypes = {
+    firstName: PropTypes.string.isRequired,
 };
 
 export default TopBar;

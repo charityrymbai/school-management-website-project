@@ -14,7 +14,7 @@ const About = () => {
             <CardWrapper1>
                 <div className="font-poppins">
                     <h1 className={h1Style}>About Our School</h1>
-                    <Line thick="2" />
+                    <Line thick={2} />
                     <p className={pStyle}>
                         Welcome to Some Random Higher Secondary School, located
                         in the heart of RandomPlace. Established with the

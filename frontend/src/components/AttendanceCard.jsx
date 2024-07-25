@@ -1,11 +1,14 @@
+import PropTypes from 'prop-types';
+
 import CircleChart from '../components/CircleChart';
 
 import { CardWrapper3 } from '../Wrappers/CardWrapper';
 import { cardNormal } from '../responsive-styles-for-elements/tailwind-styles-exports';
 
 const AttendanceCard = ({ attendance }) => {
+    let attendanceStats;
     if (attendance.length > 0) {
-        const attendanceStats = attendance.reduce(
+        attendanceStats = attendance.reduce(
             (stats, record) => {
                 if (record.present) {
                     stats.attended++;
@@ -47,6 +50,10 @@ const AttendanceCard = ({ attendance }) => {
             </CardWrapper3>
         </div>
     );
+};
+
+AttendanceCard.propTypes = {
+    attendance: PropTypes.array.isRequired,
 };
 
 export default AttendanceCard;

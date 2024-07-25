@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react';
-import TopBar2 from '../components/TopBar2';
-import { CardWrapper4 } from '../Wrappers/CardWrapper';
+import TopBar2 from '../../components/TopBar2';
+import { CardWrapper4 } from '../../Wrappers/CardWrapper';
 import {
     h3Style,
     pStyle,
-} from '../responsive-styles-for-elements/tailwind-styles-exports';
-import useScreenWidth from '../utils/useScreenWidth';
-import Loader from '../components/Loader';
+} from '../../responsive-styles-for-elements/tailwind-styles-exports';
+import useScreenWidth from '../../utils/useScreenWidth';
+import Loader from '../../components/Loader';
 import { useNavigate } from 'react-router-dom';
 
-const Library = () => {
-    const [libraryRecords, setLibraryRecords] = useState([]);
+const Fees = () => {
+    const [fees, setFees] = useState([]);
     const screenWidth = useScreenWidth();
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
@@ -22,7 +22,7 @@ const Library = () => {
 
     useEffect(() => {
         fetch(
-            `${import.meta.env.VITE_REACT_APP_API_URL}/api/v1/student/getLibraryRecords`,
+            `${import.meta.env.VITE_REACT_APP_API_URL}/api/v1/student/getFeeDetails`,
             {
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -33,57 +33,55 @@ const Library = () => {
                 return res.json();
             })
             .then((data) => {
-                setLibraryRecords(data);
+                setFees(data);
                 setLoading(false);
             });
     }, [token]);
+
     return (
         <div className="w-full">
             {loading ? (
-                <Loader />
+                <Loader></Loader>
             ) : (
                 <div>
-                    <TopBar2 Heading={'Library'} />
+                    <TopBar2 Heading={'Fees'} />
                     <div className="p-4">
                         <CardWrapper4>
                             <table className="min-w-[350px] w-full border-spacing-5">
                                 <thead className={h3Style + ' border-b-4 h-16'}>
                                     <tr>
-                                        <th>Id</th>
                                         <th>
                                             {screenWidth > 1020
-                                                ? 'Book No'
-                                                : 'B. No'}
+                                                ? 'Reference Id'
+                                                : 'Ref. Id'}
                                         </th>
-                                        <th>Taken on</th>
-                                        <th>Due on</th>
+                                        <th>
+                                            {screenWidth > 1020
+                                                ? 'Installment No'
+                                                : 'Ins. No'}
+                                        </th>
+                                        <th>Amount</th>
+                                        <th>Paid on</th>
                                     </tr>
                                 </thead>
                                 <tbody className={pStyle}>
-                                    {libraryRecords.length > 0 ? (
-                                        libraryRecords.map((row, index) => {
+                                    {fees.length > 0 ? (
+                                        fees.map((row, index) => {
                                             return (
                                                 <tr
                                                     key={index}
                                                     className="h-16 text-center border-b-2"
                                                 >
-                                                    <td>{row.id}</td>
-                                                    <td>{row.bookNo}</td>
                                                     <td>
-                                                        {new Date(
-                                                            row.takenOn,
-                                                        ).toLocaleDateString(
-                                                            'en-GB',
-                                                            {
-                                                                day: '2-digit',
-                                                                month: 'long',
-                                                                year: 'numeric',
-                                                            },
-                                                        )}
+                                                        {row.fees_reference_id}
                                                     </td>
                                                     <td>
+                                                        {row.installment_no}
+                                                    </td>
+                                                    <td>{row.amount}</td>
+                                                    <td>
                                                         {new Date(
-                                                            row.dueDate,
+                                                            row.paid_on,
                                                         ).toLocaleDateString(
                                                             'en-GB',
                                                             {
@@ -102,7 +100,7 @@ const Library = () => {
                                                 colSpan="4"
                                                 className="h-16 text-center"
                                             >
-                                                No Books taken so far
+                                                No Fees paid so far
                                             </td>
                                         </tr>
                                     )}
@@ -116,4 +114,4 @@ const Library = () => {
     );
 };
 
-export default Library;
+export default Fees;

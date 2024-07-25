@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-import TopBar2 from '../components/TopBar2';
-import { CardWrapper4 } from '../Wrappers/CardWrapper';
+import TopBar2 from '../../components/TopBar2';
+import { CardWrapper4 } from '../../Wrappers/CardWrapper';
 import {
     h3Style,
     pStyle,
-} from '../responsive-styles-for-elements/tailwind-styles-exports';
-import useScreenWidth from '../utils/useScreenWidth';
-import Loader from '../components/Loader';
+} from '../../responsive-styles-for-elements/tailwind-styles-exports';
+import useScreenWidth from '../../utils/useScreenWidth';
+import Loader from '../../components/Loader';
 import { useNavigate } from 'react-router-dom';
 
 const Library = () => {

@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const TextLink = ({ children, href }) => {
     return (
         <>
@@ -6,6 +8,11 @@ const TextLink = ({ children, href }) => {
             </a>
         </>
     );
+};
+
+TextLink.propTypes = {
+    children: PropTypes.node.isRequired,
+    href: PropTypes.string.isRequired,
 };
 
 export default TextLink;

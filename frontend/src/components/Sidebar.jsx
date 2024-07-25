@@ -1,9 +1,9 @@
-import { ChevronLast, ChevronFirst, Menu, X } from 'lucide-react';
+import PropTypes from 'prop-types';
+import { ChevronLast, ChevronFirst, Menu } from 'lucide-react';
 import { useContext, createContext, useState, useEffect } from 'react';
 import { schoolLogo } from '../../public/images/photosExports';
 import { useBaseNavigate } from '../utils/useBaseNavigation.js';
-import { useLocation } from 'react-router-dom';
-import Loader from './Loader.jsx';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const SidebarContext = createContext();
 
@@ -11,6 +11,7 @@ export default function Sidebar({ children }) {
     const [expanded, setExpanded] = useState(true);
     const [showSidebar, setShowSidebar] = useState(false);
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
 
     let [student, setStudent] = useState({});
 
@@ -36,7 +37,7 @@ export default function Sidebar({ children }) {
                 setStudent(data);
                 setLoading(false);
             });
-    }, []);
+    }, [token]);
 
     return (
         <>
@@ -118,7 +119,7 @@ export default function Sidebar({ children }) {
     );
 }
 
-export function SidebarItem({ icon, text, alert, goToPage }) {
+export function SidebarItem({ icon, text, goToPage }) {
     const { expanded, setShowSidebar } = useContext(SidebarContext);
     const location = useLocation();
 
@@ -155,14 +156,6 @@ export function SidebarItem({ icon, text, alert, goToPage }) {
             >
                 {text}
             </span>
-            {alert && (
-                <div
-                    className={`absolute right-2 w-2 h-2 rounded bg-indigo-400 ${
-                        expanded ? '' : 'top-2'
-                    }`}
-                />
-            )}
-
             {!expanded && (
                 <div
                     className={`
@@ -178,3 +171,13 @@ export function SidebarItem({ icon, text, alert, goToPage }) {
         </li>
     );
 }
+
+Sidebar.propTypes = {
+    children: PropTypes.node.isRequired,
+};
+
+SidebarItem.propTypes = {
+    icon: PropTypes.node.isRequired,
+    text: PropTypes.string.isRequired,
+    goToPage: PropTypes.string.isRequired,
+};

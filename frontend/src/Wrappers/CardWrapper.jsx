@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import {
     h2Style,
     pStyle,
@@ -44,4 +45,25 @@ export const CardWrapper4 = (props) => {
             {props.children}
         </div>
     );
+};
+
+CardWrapper1.propTypes = {
+    custom: PropTypes.string,
+    children: PropTypes.node.isRequired,
+};
+
+CardWrapper2.propTypes = {
+    custom: PropTypes.string,
+    children: PropTypes.node.isRequired,
+};
+
+CardWrapper3.propTypes = {
+    custom: PropTypes.string,
+    heading: PropTypes.string.isRequired,
+    children: PropTypes.node.isRequired,
+};
+
+CardWrapper4.propTypes = {
+    custom: PropTypes.string,
+    children: PropTypes.node.isRequired,
 };

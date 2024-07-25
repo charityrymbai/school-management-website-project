@@ -1,11 +1,11 @@
-import AttendanceCard from '../components/AttendanceCard.jsx';
-import GradesCard from '../components/GradesCard.jsx';
-import LibraryCard from '../components/LibraryCard.jsx';
-import FeesCard from '../components/FeesCard.jsx';
+import AttendanceCard from '../../components/AttendanceCard.jsx';
+import GradesCard from '../../components/GradesCard.jsx';
+import LibraryCard from '../../components/LibraryCard.jsx';
+import FeesCard from '../../components/FeesCard.jsx';
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import TopBar from '../components/TopBar.jsx';
-import Loader from '../components/Loader.jsx';
+import TopBar from '../../components/TopBar.jsx';
+import Loader from '../../components/Loader.jsx';
 
 const Overview = () => {
     let [student, setStudent] = useState({});

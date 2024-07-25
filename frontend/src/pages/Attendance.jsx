@@ -37,7 +37,7 @@ const Attendance = () => {
                 setAttendance(data);
                 setLoading(false);
             });
-    }, []);
+    }, [token]);
     return (
         <div className="w-full">
             {loading ? (

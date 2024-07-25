@@ -1,4 +1,3 @@
-import React from 'react';
 import MainContentWrapper from '../Wrappers/MainContentWrapper';
 import InfoSection from '../components/InfoSection.js';
 import FormSection from '../components/FormSection.js';

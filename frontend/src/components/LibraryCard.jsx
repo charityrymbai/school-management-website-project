@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { CardWrapper3 } from '../Wrappers/CardWrapper';
 
 const LibraryCard = ({ content }) => {
@@ -27,6 +28,10 @@ const LibraryCard = ({ content }) => {
             </ul>
         </CardWrapper3>
     );
+};
+
+LibraryCard.propTypes = {
+    content: PropTypes.array.isRequired,
 };
 
 export default LibraryCard;

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { CardWrapper1 } from '../Wrappers/CardWrapper';
 
 const ImageLink = ({ children, imageSrc }) => {
@@ -9,6 +10,11 @@ const ImageLink = ({ children, imageSrc }) => {
             </CardWrapper1>
         </div>
     );
+};
+
+ImageLink.propTypes = {
+    children: PropTypes.node.isRequired,
+    imageSrc: PropTypes.string.isRequired,
 };
 
 export default ImageLink;
