@@ -1,26 +1,19 @@
-import { LoginSchema } from '../ZodSchemas/CommonSchemas';
-
-const teacher = {
-    id: 'ST0123',
-    dateOfBirth: new Date(2003, 5, 18).toDateString(),
-};
+import { verify } from 'hono/jwt';
 
 const teachAuthMiddleware = async (c, next) => {
-    const body = await c.req.json();
-    const parsed = LoginSchema.safeParse(body);
-    if (!parsed.success) {
+    try {
+        const authorization = await c.req.header('Authorization');
+        const token = authorization.split(' ')[1];
+
+        const secret = c.env.JWT_SECRET;
+        const verifiedToken = await verify(token, secret);
+        c.teacher = verifiedToken;
+        await next();
+    } catch {
         return c.json({
-            message: 'You have given the wrong inputs',
+            message: 'not authorised',
         });
     }
-    if (body.id === teacher.id && body.dateOfBirth === teacher.dateOfBirth) {
-        console.log('teacher verified');
-        await next();
-        return;
-    }
-    return c.json({
-        message: 'Wrong Teacher-id or Date of Birth',
-    });
 };
 
 export default teachAuthMiddleware;
