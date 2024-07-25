@@ -122,7 +122,7 @@ export function SidebarItem({ icon, text, alert, goToPage }) {
     const { expanded, setShowSidebar } = useContext(SidebarContext);
     const location = useLocation();
 
-    const baseNavigate = useBaseNavigate('/dashboard/student');
+    const baseNavigate = useBaseNavigate('/dashboard');
 
     const active = location.pathname.includes(goToPage);
 
