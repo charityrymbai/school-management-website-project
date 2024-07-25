@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import StudentSideBarItems from '../components/StudentSidebarItems';
 import AdminSideBarItems from '../components/AdminSideBarItems';
+import TeacherSideBarItems from '../components/TeacherSideBarItems';
 
 const Dashboard = () => {
     const params = useParams();
@@ -9,7 +10,7 @@ const Dashboard = () => {
     if (params.user.toLowerCase() === 'student') {
         content = <StudentSideBarItems />;
     } else if (params.user.toLowerCase() === 'teacher') {
-        content = <div>Teacher</div>;
+        content = <TeacherSideBarItems />;
     } else if (params.user.toLowerCase() === 'admin') {
         content = <AdminSideBarItems />;
     }
