@@ -1,4 +1,3 @@
-import React from 'react';
 import { useParams } from 'react-router-dom';
 import StudentSideBarItems from '../components/StudentSidebarItems';
 import AdminSideBarItems from '../components/AdminSideBarItems';

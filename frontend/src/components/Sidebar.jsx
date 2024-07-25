@@ -14,7 +14,7 @@ export default function Sidebar({ children }) {
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
 
-    let [student, setStudent] = useState({});
+    let [user, setUser] = useState({});
 
     const token = localStorage.getItem('token');
     if (!token) {
@@ -35,10 +35,10 @@ export default function Sidebar({ children }) {
                 return res.json();
             })
             .then((data) => {
-                setStudent(data);
+                setUser(data);
                 setLoading(false);
             });
-    }, [token]);
+    }, [token, params.user]);
 
     return (
         <>
@@ -92,16 +92,16 @@ export default function Sidebar({ children }) {
             `}
                                 >
                                     <div className="leading-4">
-                                        <h4 className="font-semibold">{`${student.firstName} ${student.lastName}`}</h4>
+                                        <h4 className="font-semibold">{`${user.firstName} ${user.lastName}`}</h4>
                                         {params.user.toLowerCase() ===
                                         'student' ? (
                                             <>
                                                 <span className="text-xs text-gray-600">
-                                                    Class: {student.class}
+                                                    Class: {user.class}
                                                 </span>
                                                 <br />
                                                 <span className="text-xs text-gray-600">
-                                                    Roll no: {student.roll_no}
+                                                    Roll no: {user.roll_no}
                                                 </span>
                                             </>
                                         ) : (
