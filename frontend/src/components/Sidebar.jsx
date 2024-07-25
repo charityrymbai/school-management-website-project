@@ -93,14 +93,20 @@ export default function Sidebar({ children }) {
                                 >
                                     <div className="leading-4">
                                         <h4 className="font-semibold">{`${student.firstName} ${student.lastName}`}</h4>
-                                        {(params.user.toLowerCase()==="student")?
-                                            (<><span className="text-xs text-gray-600">
-                                            Class: {student.class}
-                                        </span>
-                                        <br />
-                                        <span className="text-xs text-gray-600">
-                                            Roll no: {student.roll_no}
-                                        </span></>):(<></>)}
+                                        {params.user.toLowerCase() ===
+                                        'student' ? (
+                                            <>
+                                                <span className="text-xs text-gray-600">
+                                                    Class: {student.class}
+                                                </span>
+                                                <br />
+                                                <span className="text-xs text-gray-600">
+                                                    Roll no: {student.roll_no}
+                                                </span>
+                                            </>
+                                        ) : (
+                                            <></>
+                                        )}
                                     </div>
                                 </div>
                             </div>

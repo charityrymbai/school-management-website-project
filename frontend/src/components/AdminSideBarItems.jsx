@@ -3,11 +3,9 @@ import AdminRoutes from '../Routes/AdminRoutes.jsx';
 
 import { SidebarItem } from '../components/Sidebar.jsx';
 const Sidebar = React.lazy(() => import('../components/Sidebar.jsx'));
-import {
-    Wallet
-} from 'lucide-react';
+import { Wallet } from 'lucide-react';
 
-const AdminSideBarItems = ()=>{
+const AdminSideBarItems = () => {
     return (
         <>
             <Sidebar>
@@ -19,7 +17,7 @@ const AdminSideBarItems = ()=>{
             </Sidebar>
             <AdminRoutes />
         </>
-    )
-}
+    );
+};
 
-export default AdminSideBarItems
+export default AdminSideBarItems;

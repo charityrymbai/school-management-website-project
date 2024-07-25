@@ -1,7 +1,6 @@
 import { Route, Routes, Navigate } from 'react-router-dom';
 import Student from '../pages/admin/Student';
-import Teacher from '../pages/admin/Teacher'
-
+import Teacher from '../pages/admin/Teacher';
 
 const AdminRoutes = () => {
     return (

@@ -7,18 +7,14 @@ const Dashboard = () => {
     const params = useParams();
     let content;
 
-    if(params.user.toLowerCase()==="student"){
-        content = <StudentSideBarItems />
-    } else if (params.user.toLowerCase()==="teacher"){
-        content = <div>Teacher</div>
-    } else if (params.user.toLowerCase()==="admin"){
-        content = <AdminSideBarItems />
+    if (params.user.toLowerCase() === 'student') {
+        content = <StudentSideBarItems />;
+    } else if (params.user.toLowerCase() === 'teacher') {
+        content = <div>Teacher</div>;
+    } else if (params.user.toLowerCase() === 'admin') {
+        content = <AdminSideBarItems />;
     }
-    return (
-        <div className="flex">
-            {content}
-        </div>
-    );
+    return <div className="flex">{content}</div>;
 };
 
 export default Dashboard;

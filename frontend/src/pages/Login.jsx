@@ -2,7 +2,11 @@ import { Link } from 'react-router-dom';
 
 import MainContentWrappper from '../Wrappers/MainContentWrapper';
 import ImageLink from '../components/ImageLink';
-import { adminLogo, studentLogo, teacherLogo } from '../../public/images/photosExports';
+import {
+    adminLogo,
+    studentLogo,
+    teacherLogo,
+} from '../../public/images/photosExports';
 
 const Login = () => {
     return (

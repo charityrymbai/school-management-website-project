@@ -1,5 +1,5 @@
-import React from "react";
-import StudentRoutes from "../Routes/StudentRoutes.jsx"
+import React from 'react';
+import StudentRoutes from '../Routes/StudentRoutes.jsx';
 
 import { SidebarItem } from '../components/Sidebar.jsx';
 const Sidebar = React.lazy(() => import('../components/Sidebar.jsx'));
@@ -11,7 +11,7 @@ import {
     PersonStanding,
 } from 'lucide-react';
 
-const StudentSideBarItems = ()=>{
+const StudentSideBarItems = () => {
     return (
         <>
             <Sidebar>
@@ -43,7 +43,7 @@ const StudentSideBarItems = ()=>{
             </Sidebar>
             <StudentRoutes />
         </>
-    )
-}
+    );
+};
 
-export default StudentSideBarItems
+export default StudentSideBarItems;

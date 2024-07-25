@@ -13,7 +13,7 @@ const LoginPortal = () => {
     const [id, setId] = useState('');
     const [dateOfBirth, setDateOfBirth] = useState('2000-01-01');
     const [errorMessage, setErrorMessage] = useState('');
-    const [password, setPassword] = useState('')
+    const [password, setPassword] = useState('');
 
     function showError(error) {
         setErrorMessage(error);
@@ -22,17 +22,17 @@ const LoginPortal = () => {
         }, 5000);
     }
 
-    let requestBody; 
-    if(params.user.toLowerCase()==="student"){
+    let requestBody;
+    if (params.user.toLowerCase() === 'student') {
         requestBody = {
             id: parseInt(id),
             date_of_birth: new Date(dateOfBirth).toISOString(),
-        }
+        };
     } else {
         requestBody = {
             id: parseInt(id),
             password: password,
-        }
+        };
     }
 
     const onclickHandler = async () => {
@@ -70,30 +70,36 @@ const LoginPortal = () => {
                                     setId(e.target.value);
                                 }}
                             ></input>
-                            {(params.user.toLowerCase()==="student")?
-                                (<><input
-                                className="w-full p-2 h-10 border-2 border-gray-400 rounded-md"
-                                placeholder="Date of Birth"
-                                type="date"
-                                min="1960-01-01"
-                                onChange={(e) => {
-                                    setDateOfBirth(e.target.value);
-                                }}
-                            ></input>
-                            <TextLink href="#">Forgot Student ID?</TextLink></>)
-                            :
-                            (
-                                <><input
-                                className="w-full p-2 h-10 border-2 border-gray-400 rounded-md"
-                                placeholder="Password"
-                                type="password"
-                                onChange={(e) => {
-                                    setPassword(e.target.value);
-                                }}
-                            ></input>
-                            <TextLink href="#">Forgot ID or Password?</TextLink></> 
-                            )
-                            }
+                            {params.user.toLowerCase() === 'student' ? (
+                                <>
+                                    <input
+                                        className="w-full p-2 h-10 border-2 border-gray-400 rounded-md"
+                                        placeholder="Date of Birth"
+                                        type="date"
+                                        min="1960-01-01"
+                                        onChange={(e) => {
+                                            setDateOfBirth(e.target.value);
+                                        }}
+                                    ></input>
+                                    <TextLink href="#">
+                                        Forgot Student ID?
+                                    </TextLink>
+                                </>
+                            ) : (
+                                <>
+                                    <input
+                                        className="w-full p-2 h-10 border-2 border-gray-400 rounded-md"
+                                        placeholder="Password"
+                                        type="password"
+                                        onChange={(e) => {
+                                            setPassword(e.target.value);
+                                        }}
+                                    ></input>
+                                    <TextLink href="#">
+                                        Forgot ID or Password?
+                                    </TextLink>
+                                </>
+                            )}
                             <button
                                 className="bg-indigo-700 hover:bg-indigo-900 text-white 
                             rounded-full py-2"

@@ -5,19 +5,12 @@ import RoutesWithHeaderFooter from './Routes/RoutesWithHeaderFooter';
 import Loader from './components/Loader';
 import Dashboard from './pages/Dashboard';
 
-const RoutesWithoutHeaderFooter = React.lazy(
-    () => import('./Routes/RoutesWithoutHeaderFooter'),
-);
-
 function App() {
     return (
         <React.Suspense fallback={<Loader />}>
             <Routes>
                 {/* Route without header and footer */}
-                <Route
-                    path="/dashboard/:user/*"
-                    element={<Dashboard />}
-                />
+                <Route path="/dashboard/:user/*" element={<Dashboard />} />
 
                 {/* Routes with header and footer */}
                 <Route path="/*" element={<RoutesWithHeaderFooter />} />
