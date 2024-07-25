@@ -28,12 +28,22 @@ model Teacher {
     middleName    String?
     lastName      String
     date_of_birth DateTime
+    password      String 
     dept          String
     paid_leaves   Int     @default(20)
     subject       Subject[]
     marks         Marks[]
     libraryBooks  LibraryTeach[]
     classesTaken  Attendance[]
+}
+
+model Admin {
+    ad_id         Int      @id @default(autoincrement())
+    firstName     String
+    middleName    String?
+    lastName      String
+    date_of_birth DateTime
+    password      String
 }
 
 model Fees {
