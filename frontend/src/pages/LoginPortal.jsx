@@ -11,7 +11,7 @@ const LoginPortal = () => {
     const params = useParams();
     const navigate = useNavigate();
 
-    const [id, setId] = useState('');
+    const [loginString, setLoginString] = useState('');
     const [dateOfBirth, setDateOfBirth] = useState('2000-01-01');
     const [errorMessage, setErrorMessage] = useState('');
     const [password, setPassword] = useState('');
@@ -24,20 +24,38 @@ const LoginPortal = () => {
         }, 5000);
     }
 
-    let requestBody;
-    if (params.user.toLowerCase() === 'student') {
-        requestBody = {
-            id: parseInt(id),
-            date_of_birth: new Date(dateOfBirth).toISOString(),
-        };
-    } else {
-        requestBody = {
-            id: parseInt(id),
-            password: password,
-        };
-    }
-
     const onclickHandler = async () => {
+        let requestBody;
+        const id = loginString.split('-')[1];
+        try{
+            if (loginString.split('-')[1].length == 3){
+                if (params.user.toLowerCase() === 'student' && loginString.split('-')[0]==='ST') {
+                    requestBody = {
+                        id: parseInt(id),
+                        date_of_birth: new Date(dateOfBirth).toISOString(),
+                    };
+                } else if (params.user.toLowerCase() === 'teacher' && loginString.split('-')[0]==='TE') {
+                    requestBody = {
+                        id: parseInt(id),
+                        password: password,
+                    };
+                } else if (params.user.toLowerCase() === 'admin' && loginString.split('-')[0]==='AD') {
+                    requestBody = {
+                        id: parseInt(id),
+                        password: password,
+                    };
+                } else {
+                    showError('Invalid ID');
+                    return; 
+                }
+            } else {
+                showError('Invalid ID');
+                return;
+            }
+        }catch{
+            showError('Invalid ID');
+            return;
+        }
         setLoading(true);
         const res = await fetch(
             `${import.meta.env.VITE_REACT_APP_API_URL}/api/v1/${params.user.toLowerCase()}/signin`,
@@ -74,7 +92,7 @@ const LoginPortal = () => {
                                     className="w-full p-2 h-10 border-2 border-gray-400 rounded-md my-5"
                                     placeholder={`${params.user} ID No.`}
                                     onChange={(e) => {
-                                        setId(e.target.value);
+                                        setLoginString(e.target.value);
                                     }}
                                 ></input>
                                 {params.user.toLowerCase() === 'student' ? (
