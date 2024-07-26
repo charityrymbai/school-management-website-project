@@ -1,7 +1,14 @@
+import React from 'react';
 import { useParams } from 'react-router-dom';
-import StudentSideBarItems from '../components/StudentSidebarItems';
-import AdminSideBarItems from '../components/AdminSideBarItems';
-import TeacherSideBarItems from '../components/TeacherSideBarItems';
+const StudentSideBarItems = React.lazy(
+    () => import('../components/StudentSidebarItems'),
+);
+const AdminSideBarItems = React.lazy(
+    () => import('../components/AdminSideBarItems'),
+);
+const TeacherSideBarItems = React.lazy(
+    () => import('../components/TeacherSideBarItems'),
+);
 
 const Dashboard = () => {
     const params = useParams();

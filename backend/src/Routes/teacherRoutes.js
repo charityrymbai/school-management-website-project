@@ -74,7 +74,7 @@ teacherRouter.post('/signin', async (c) => {
     }
 });
 
-teacherRouter.get('/getDetails', teachAuthMiddleware,async (c) => {
+teacherRouter.get('/getDetails', teachAuthMiddleware, async (c) => {
     const prisma = new PrismaClient({
         datasourceUrl: c.env.DATABASE_URL,
     }).$extends(withAccelerate());

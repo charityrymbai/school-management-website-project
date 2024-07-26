@@ -1,6 +1,7 @@
+import React from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
-import Student from '../pages/admin/Student';
-import Teacher from '../pages/admin/Teacher';
+const Student = React.lazy(() => import('../pages/admin/Student'));
+const Teacher = React.lazy(() => import('../pages/admin/Teacher'));
 
 const AdminRoutes = () => {
     return (

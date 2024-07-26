@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react';
-import TopBar2 from '../../components/TopBar2';
+import React, { useEffect, useState } from 'react';
+const TopBar2 = React.lazy(() => import('../../components/TopBar2'));
 import { CardWrapper4 } from '../../Wrappers/CardWrapper';
 import {
     h3Style,
     pStyle,
 } from '../../responsive-styles-for-elements/tailwind-styles-exports';
 import useScreenWidth from '../../utils/useScreenWidth';
-import Loader from '../../components/Loader';
+const Loader = React.lazy(() => import('../../components/Loader'));
 import { useNavigate } from 'react-router-dom';
 
 const Fees = () => {

@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
-import TopBar2 from '../../components/TopBar2';
+import React, { useEffect, useState } from 'react';
+const TopBar2 = React.lazy(() => import('../../components/TopBar2'));
 import { useNavigate } from 'react-router-dom';
-import Loader from '../../components/Loader';
+const Loader = React.lazy(() => import('../../components/Loader'));
 import { CardWrapper4 } from '../../Wrappers/CardWrapper';
 import {
     h3Style,

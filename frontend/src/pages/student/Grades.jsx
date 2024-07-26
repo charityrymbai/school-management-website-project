@@ -1,4 +1,5 @@
-import TopBar2 from '../../components/TopBar2';
+import React from 'react';
+const TopBar2 = React.lazy(() => import('../../components/TopBar2'));
 
 const Grades = () => {
     return (

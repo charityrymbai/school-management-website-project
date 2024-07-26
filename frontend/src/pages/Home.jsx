@@ -1,6 +1,9 @@
-import QuickLinks from '../components/QuickLinks';
-import Announcements from '../components/Announcements.jsx';
-import Slideshow from '../components/Slideshow';
+import React from 'react';
+const QuickLinks = React.lazy(() => import('../components/QuickLinks'));
+const Announcements = React.lazy(
+    () => import('../components/Announcements.jsx'),
+);
+const Slideshow = React.lazy(() => import('../components/Slideshow'));
 import MainContentWrappper from '../Wrappers/MainContentWrapper';
 import { CardWrapper1 } from '../Wrappers/CardWrapper';
 import {

@@ -4,9 +4,9 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Home from '../pages/Home';
-import Login from '../pages/Login';
-import LoginPortal from '../pages/LoginPortal';
 
+const Login = React.lazy(() => import('../pages/Login'));
+const LoginPortal = React.lazy(() => import('../pages/LoginPortal'));
 const Contact = React.lazy(() => import('../pages/Contact'));
 const About = React.lazy(() => import('../pages/About'));
 

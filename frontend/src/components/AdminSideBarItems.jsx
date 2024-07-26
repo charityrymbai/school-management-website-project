@@ -1,5 +1,5 @@
 import React from 'react';
-import AdminRoutes from '../Routes/AdminRoutes.jsx';
+const AdminRoutes = React.lazy(() => import('../Routes/AdminRoutes.jsx'));
 
 import { SidebarItem } from '../components/Sidebar.jsx';
 const Sidebar = React.lazy(() => import('../components/Sidebar.jsx'));

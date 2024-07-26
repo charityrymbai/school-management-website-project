@@ -1,5 +1,5 @@
 import React from 'react';
-import StudentRoutes from '../Routes/StudentRoutes.jsx';
+const StudentRoutes = React.lazy(() => import('../Routes/StudentRoutes.jsx'));
 
 import { SidebarItem } from '../components/Sidebar.jsx';
 const Sidebar = React.lazy(() => import('../components/Sidebar.jsx'));

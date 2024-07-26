@@ -1,10 +1,11 @@
+import React from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
 
-import Overview from '../pages/student/Overview';
-import Library from '../pages/student/Library';
-import Grades from '../pages/student/Grades';
-import Attendance from '../pages/student/Attendance';
-import Fees from '../pages/student/Fees';
+const Overview = React.lazy(() => import('../pages/student/Overview'));
+const Library = React.lazy(() => import('../pages/student/Library'));
+const Grades = React.lazy(() => import('../pages/student/Grades'));
+const Attendance = React.lazy(() => import('../pages/student/Attendance'));
+const Fees = React.lazy(() => import('../pages/student/Fees'));
 
 const StudentRoutes = () => {
     return (
