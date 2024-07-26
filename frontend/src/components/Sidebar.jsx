@@ -88,6 +88,7 @@ export default function Sidebar({ children }) {
                                     src={`https://ui-avatars.com/api/?name=${user.firstName+" "+user.lastName}&background=c7d2fe&color=3730a3&bold=true`}
                                     alt="Avatar"
                                     className="w-10 h-10 rounded-md"
+                                    onClick={()=>{!expanded && setIsMenuOpen(state=>!state)}}
                                 />
                                 <div
                                     className={`
@@ -122,7 +123,7 @@ export default function Sidebar({ children }) {
                                 }
                                 {
                                     isMenuOpen ? (
-                                        <div className="absolute w-24 right-0 bottom-16 bg-white shadow-lg border-2 rounded-md p-2">
+                                        <div className="z-50 absolute w-24 -right-10 bottom-16 bg-white shadow-lg border-2 rounded-md p-2">
                                         <ul>
                                             <li><button onClick={logoutHandler} className="w-full text-left">Logout</button>
                                             </li>
