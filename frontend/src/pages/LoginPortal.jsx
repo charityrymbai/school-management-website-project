@@ -85,7 +85,8 @@ const LoginPortal = () => {
                     <Loader />
                 ) : (
                     <div className="flex justify-center">
-                        <CardWrapper1 custom={'w-[300px]'}>
+                    <div className='w-fit'>
+                        <CardWrapper1>
                             <div className="grid grid-cols-1">
                                 <Heading1>Welcome {params.user}s!!</Heading1>
                                 <input
@@ -137,6 +138,7 @@ const LoginPortal = () => {
                                 </div>
                             </div>
                         </CardWrapper1>
+                        </div>
                     </div>
                 )}
             </MainContentWrappper>
