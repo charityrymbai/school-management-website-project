@@ -1,5 +1,10 @@
 import PropTypes from 'prop-types';
-import { ChevronLast, ChevronFirst, Menu, EllipsisVertical } from 'lucide-react';
+import {
+    ChevronLast,
+    ChevronFirst,
+    Menu,
+    EllipsisVertical,
+} from 'lucide-react';
 import { useContext, createContext, useState, useEffect } from 'react';
 import { schoolLogo } from '../../public/images/photosExports';
 import { useBaseNavigate } from '../utils/useBaseNavigation.js';
@@ -16,7 +21,7 @@ export default function Sidebar({ children }) {
     const logoutHandler = () => {
         localStorage.removeItem('token');
         navigate(`/login/${params.user.toLowerCase()}`);
-    }
+    };
     const navigate = useNavigate();
 
     let [user, setUser] = useState({});
@@ -52,7 +57,7 @@ export default function Sidebar({ children }) {
             ) : (
                 <div>
                     <aside
-                        className={`h-screen fixed w-full md:sticky md:w-fit bg-white border-r shadow-sm transition-transform transform ${
+                        className={`h-screen fixed w-full md:sticky top-0 md:w-fit bg-white border-r shadow-sm transition-transform transform ${
                             showSidebar ? 'translate-x-0' : '-translate-x-full'
                         } md:translate-x-0`}
                     >
@@ -85,10 +90,13 @@ export default function Sidebar({ children }) {
 
                             <div className="h-[100px] sticky bottom-0 border-t p-3 flex items-center md:justify-between">
                                 <img
-                                    src={`https://ui-avatars.com/api/?name=${user.firstName+" "+user.lastName}&background=c7d2fe&color=3730a3&bold=true`}
+                                    src={`https://ui-avatars.com/api/?name=${user.firstName + ' ' + user.lastName}&background=c7d2fe&color=3730a3&bold=true`}
                                     alt="Avatar"
                                     className="w-10 h-10 rounded-md"
-                                    onClick={()=>{!expanded && setIsMenuOpen(state=>!state)}}
+                                    onClick={() => {
+                                        !expanded &&
+                                            setIsMenuOpen((state) => !state);
+                                    }}
                                 />
                                 <div
                                     className={`
@@ -113,28 +121,40 @@ export default function Sidebar({ children }) {
                                         ) : (
                                             <></>
                                         )}
-                                        
                                     </div>
                                 </div>
-                                {
-                                    (expanded? (
-                                        <button onClick={()=>setIsMenuOpen(state=>!state)}><EllipsisVertical /></button>)
-                                    :(<></>))
-                                }
-                                {
-                                    isMenuOpen ? (
-                                        <div className="z-50 absolute w-24 -right-10 bottom-16 bg-white shadow-lg border-2 rounded-md p-2">
+                                {expanded ? (
+                                    <button
+                                        onClick={() =>
+                                            setIsMenuOpen((state) => !state)
+                                        }
+                                    >
+                                        <EllipsisVertical />
+                                    </button>
+                                ) : (
+                                    <></>
+                                )}
+                                {isMenuOpen ? (
+                                    <div className="z-50 absolute w-24 -right-10 bottom-16 bg-white shadow-lg border-2 rounded-md p-2">
                                         <ul>
-                                            <li><button onClick={logoutHandler} className="w-full text-left">Logout</button>
+                                            <li>
+                                                <button
+                                                    onClick={logoutHandler}
+                                                    className="w-full text-left"
+                                                >
+                                                    Logout
+                                                </button>
                                             </li>
-                                            <li><button className="w-full text-left">Profile</button>
+                                            <li>
+                                                <button className="w-full text-left">
+                                                    Profile
+                                                </button>
                                             </li>
                                         </ul>
-                                        </div>
-                                    ) : (
-                                        <></>
-                                    )
-                                }
+                                    </div>
+                                ) : (
+                                    <></>
+                                )}
                             </div>
                         </nav>
                     </aside>

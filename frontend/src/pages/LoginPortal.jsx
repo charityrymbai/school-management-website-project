@@ -27,32 +27,41 @@ const LoginPortal = () => {
     const onclickHandler = async () => {
         let requestBody;
         const id = loginString.split('-')[1];
-        try{
-            if (loginString.split('-')[1].length == 3){
-                if (params.user.toLowerCase() === 'student' && loginString.split('-')[0]==='ST') {
+        try {
+            if (loginString.split('-')[1].length == 3) {
+                if (
+                    params.user.toLowerCase() === 'student' &&
+                    loginString.split('-')[0] === 'ST'
+                ) {
                     requestBody = {
                         id: parseInt(id),
                         date_of_birth: new Date(dateOfBirth).toISOString(),
                     };
-                } else if (params.user.toLowerCase() === 'teacher' && loginString.split('-')[0]==='TE') {
+                } else if (
+                    params.user.toLowerCase() === 'teacher' &&
+                    loginString.split('-')[0] === 'TE'
+                ) {
                     requestBody = {
                         id: parseInt(id),
                         password: password,
                     };
-                } else if (params.user.toLowerCase() === 'admin' && loginString.split('-')[0]==='AD') {
+                } else if (
+                    params.user.toLowerCase() === 'admin' &&
+                    loginString.split('-')[0] === 'AD'
+                ) {
                     requestBody = {
                         id: parseInt(id),
                         password: password,
                     };
                 } else {
                     showError('Invalid ID');
-                    return; 
+                    return;
                 }
             } else {
                 showError('Invalid ID');
                 return;
             }
-        }catch{
+        } catch {
             showError('Invalid ID');
             return;
         }
@@ -85,59 +94,63 @@ const LoginPortal = () => {
                     <Loader />
                 ) : (
                     <div className="flex justify-center">
-                    <div className='w-fit'>
-                        <CardWrapper1>
-                            <div className="grid grid-cols-1">
-                                <Heading1>Welcome {params.user}s!!</Heading1>
-                                <input
-                                    className="w-full p-2 h-10 border-2 border-gray-400 rounded-md my-5"
-                                    placeholder={`${params.user} ID No.`}
-                                    onChange={(e) => {
-                                        setLoginString(e.target.value);
-                                    }}
-                                ></input>
-                                {params.user.toLowerCase() === 'student' ? (
-                                    <>
-                                        <input
-                                            className="w-full p-2 h-10 border-2 border-gray-400 rounded-md"
-                                            placeholder="Date of Birth"
-                                            type="date"
-                                            min="1960-01-01"
-                                            onChange={(e) => {
-                                                setDateOfBirth(e.target.value);
-                                            }}
-                                        ></input>
-                                        <TextLink href="#">
-                                            Forgot Student ID?
-                                        </TextLink>
-                                    </>
-                                ) : (
-                                    <>
-                                        <input
-                                            className="w-full p-2 h-10 border-2 border-gray-400 rounded-md"
-                                            placeholder="Password"
-                                            type="password"
-                                            onChange={(e) => {
-                                                setPassword(e.target.value);
-                                            }}
-                                        ></input>
-                                        <TextLink href="#">
-                                            Forgot ID or Password?
-                                        </TextLink>
-                                    </>
-                                )}
-                                <button
-                                    className="bg-indigo-700 hover:bg-indigo-900 text-white 
+                        <div className="w-fit">
+                            <CardWrapper1>
+                                <div className="grid grid-cols-1">
+                                    <Heading1>
+                                        Welcome {params.user}s!!
+                                    </Heading1>
+                                    <input
+                                        className="w-full p-2 h-10 border-2 border-gray-400 rounded-md my-5"
+                                        placeholder={`${params.user} ID No.`}
+                                        onChange={(e) => {
+                                            setLoginString(e.target.value);
+                                        }}
+                                    ></input>
+                                    {params.user.toLowerCase() === 'student' ? (
+                                        <>
+                                            <input
+                                                className="w-full p-2 h-10 border-2 border-gray-400 rounded-md"
+                                                placeholder="Date of Birth"
+                                                type="date"
+                                                min="1960-01-01"
+                                                onChange={(e) => {
+                                                    setDateOfBirth(
+                                                        e.target.value,
+                                                    );
+                                                }}
+                                            ></input>
+                                            <TextLink href="#">
+                                                Forgot Student ID?
+                                            </TextLink>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <input
+                                                className="w-full p-2 h-10 border-2 border-gray-400 rounded-md"
+                                                placeholder="Password"
+                                                type="password"
+                                                onChange={(e) => {
+                                                    setPassword(e.target.value);
+                                                }}
+                                            ></input>
+                                            <TextLink href="#">
+                                                Forgot ID or Password?
+                                            </TextLink>
+                                        </>
+                                    )}
+                                    <button
+                                        className="bg-indigo-700 hover:bg-indigo-900 text-white 
                             rounded-full py-2"
-                                    onClick={onclickHandler}
-                                >
-                                    Submit
-                                </button>
-                                <div className="text-sm text-red-500">
-                                    {errorMessage}
+                                        onClick={onclickHandler}
+                                    >
+                                        Submit
+                                    </button>
+                                    <div className="text-sm text-red-500">
+                                        {errorMessage}
+                                    </div>
                                 </div>
-                            </div>
-                        </CardWrapper1>
+                            </CardWrapper1>
                         </div>
                     </div>
                 )}
