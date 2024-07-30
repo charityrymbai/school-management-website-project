@@ -8,6 +8,7 @@ import {
     CreateTeacherSchema,
     StdLendBookSchema,
     StudentSchema,
+    TeacherSchema,
     TeachLendBookSchema,
 } from '../ZodSchemas/adminSchemas';
 import { SigninSchema } from '../ZodSchemas/CommonSchemas';
@@ -230,7 +231,7 @@ adminRouter.post('/createTeacher', async (c) => {
     }
 });
 
-adminRouter.get('/getStudent', async (c) => {
+adminRouter.post('/getStudent', async (c) => {
     const prisma = new PrismaClient({
         datasourceUrl: c.env.DATABASE_URL,
     }).$extends(withAccelerate());
@@ -250,10 +251,7 @@ adminRouter.get('/getStudent', async (c) => {
 
     try {
         const res = await prisma.student.findMany({
-            where: {
-                roll_no: body.roll_no,
-                class: body.class,
-            },
+            where: body,
         });
         return c.json(
             {
@@ -266,6 +264,47 @@ adminRouter.get('/getStudent', async (c) => {
         return c.json(
             {
                 message: 'Error fetching student',
+            },
+            500
+        );
+    } finally {
+        await prisma.$disconnect();
+    }
+});
+
+adminRouter.post('/getTeacher', async (c) => {
+    const prisma = new PrismaClient({
+        datasourceUrl: c.env.DATABASE_URL,
+    }).$extends(withAccelerate());
+
+    const body = await c.req.json();
+
+    const parsed = TeacherSchema.safeParse(body);
+
+    if (!parsed.success) {
+        return c.json(
+            {
+                message: 'Wrong inputs',
+            },
+            400
+        );
+    }
+
+    try {
+        const res = await prisma.teacher.findMany({
+            where: body,
+        });
+        return c.json(
+            {
+                data: res,
+            },
+            200
+        );
+    } catch (error) {
+        console.error(error);
+        return c.json(
+            {
+                message: 'Error fetching Teacher',
             },
             500
         );

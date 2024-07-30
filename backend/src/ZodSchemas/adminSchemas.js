@@ -41,6 +41,15 @@ export const StudentSchema = zod.object({
     cgpa: zod.number().optional(),
 });
 
+export const TeacherSchema = zod.object({
+    emp_id: zod.number().optional(),
+    firstName: zod.string().optional(),
+    middleName: zod.string().optional(),
+    lastName: zod.string().optional(),
+    date_of_birth: dateSchema.optional(),
+    dept: zod.string().optional(),
+});
+
 export const StdLendBookSchema = zod.object({
     std_id: zod.number(),
     bookNo: zod.number(),
