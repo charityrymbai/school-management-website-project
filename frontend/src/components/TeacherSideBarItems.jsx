@@ -9,7 +9,7 @@ const TeacherSideBarItems = () => {
         <>
             <Sidebar>
                 <SidebarItem
-                    goToPage="test"
+                    goToPage="teacher/test"
                     icon={<Wallet size={20} />}
                     text="Test"
                 ></SidebarItem>
