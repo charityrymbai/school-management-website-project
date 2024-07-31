@@ -124,6 +124,28 @@ adminRouter.post('/signin', async (c) => {
     }
 });
 
+adminRouter.get("/getAdminOverview", adminAuthMiddleware, async (c) =>{
+    const prisma = new PrismaClient({
+        datasourceUrl: c.env.DATABASE_URL,
+    }).$extends(withAccelerate())
+
+    try{
+        const studentNo = await prisma.student.count()
+        const teacherNo = await prisma.teacher.count()
+        return c.json({
+            stdNumber: studentNo,
+            teachNumber: teacherNo
+        })
+    }catch(error){
+        console.log(error)
+        return c.json({
+            message: "Error getting Overview info"
+        })
+    }finally{
+        await prisma.$disconnect()
+    }
+})
+
 adminRouter.get('/getDetails', adminAuthMiddleware, async (c) => {
     const prisma = new PrismaClient({
         datasourceUrl: c.env.DATABASE_URL,
