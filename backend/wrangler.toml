@@ -27,6 +27,3 @@ main = "src/index.js"
 DATABASE_URL = "prisma://accelerate.prisma-data.net/?api_key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiZTk1M2UzZmEtMzc2Zi00MGE0LWI4NTMtNzhhYjEwZGJjNWEyIiwidGVuYW50X2lkIjoiNDc2NDM3YjM3NjY1MWNhM2IzZmExYTFjYWJlY2U4MzRiMzYyMDFmZDY1MWQ4Mjc1ZmNlYWEyNTk0OTdlMjRjZCIsImludGVybmFsX3NlY3JldCI6IjhlNWU0YWM2LWJiODEtNGZlYy05ZmMwLWE4MTJlYWFiMjE3ZiJ9.71p0uJZdcjf5e2oCmPMSXCEZtbjINCU0tVf_4II4YUU"
 JWT_SECRET = "my_secret_key"
 
-[env.production.vars]
-DATABASE_URL = "https://school-management-backend.charityrymbai3110.workers.dev"
-JWT_SECRET = "my_secret_key"
