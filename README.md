@@ -1,3 +1,82 @@
+# **How to setup Project locally**
+
+## FrontEnd
+
+- Install the required dependencies after going to the ./frontend folder
+
+```bash
+   cd frontend
+   npm install
+```
+
+- Add .env file in the frontend folder with the following contents so that all the backend requests goes to this url 'http://127.0.0.1:8787'. Change this url according to your needs
+
+```bash
+VITE_REACT_APP_API_URL=http://127.0.0.1:8787
+```
+
+### Additional 
+#### Linting 
+
+- run the following inside ./frontend folder
+
+```bash
+npm run lint
+```
+
+#### Formatting using Prettier
+
+- run the following inside ./frontend folder
+
+```bash
+npm run format
+```
+
+## Backend
+
+- Install the required dependencies after going to the ./backend folder
+
+```bash
+  cd backend
+  npm i
+```
+
+- Add .env file consisting of a postgres connection string of the following format
+
+```bash
+DATABASE_URL="POSTGRES CONNECTION STRING"
+```
+
+- As this project is using Prisma, after every change to the DB we do the following commands
+ - migrating the database
+
+ ```bash
+ npx prisma migrate dev --name NAME_OF_MIGRATION
+ ```
+
+ - Generate the prisma Client
+
+ ```bash
+ npx prisma generate --no-engine
+ ```
+
+### Additional 
+#### Linting 
+
+- run the following inside ./backend folder
+
+```bash
+npm run lint
+```
+
+#### Formatting using Prettier
+
+- run the following inside ./backend folder
+
+```bash
+npm run format
+```
+
 # **Techstack used**
 
 ## FrontEnd
