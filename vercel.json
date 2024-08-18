@@ -1,0 +1,20 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "apps/*/package.json",
+        "use": "@vercel/static-build",
+        "config": {
+          "distDir": "apps/*/dist",
+          "buildCommand": "npm run build"
+        }
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "/apps/your-app/dist/$1"
+      }
+    ]
+  }
+  
