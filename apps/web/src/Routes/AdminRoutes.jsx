@@ -6,6 +6,7 @@ const Overview = React.lazy(() => import('../pages/admin/Overview'));
 const Student = React.lazy(() => import('../pages/admin/Student'));
 const Teacher = React.lazy(() => import('../pages/admin/Teacher'));
 
+
 const AdminRoutes = () => {
      return (
           <>
